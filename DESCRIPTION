@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "xiuciusli@protonmail.ch")
 Description: What the package does (one paragraph).
-Imports: 
+Imports: mvtnorm, MCMCpack, coda, knitr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
