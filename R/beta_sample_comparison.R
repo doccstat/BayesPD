@@ -20,7 +20,7 @@
 #' beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 30:40, beta_b2 = 20:30, plot = TRUE)
 beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1, beta_b1 = beta_b1, beta_a2 = beta_a2, beta_b2 = beta_b2, theta1_smaller_than_theta2 = TRUE, plot = FALSE) {
 
-	if(!is.integer(sample_size) || !is.positive(sample_size)) {
+	if(sample_size %% 1 != 0 || sample_size <= 0) {
 		stop("Error: sample size should be positive integer!")
 	}
 
