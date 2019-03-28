@@ -8,7 +8,7 @@
 #' @param theta1_smaller_than_theta2 How to make the comparison. If FALSE, compute theta1 > theta2
 #' @param plot Whether to plot the figure showing the tendency of probability change
 #'
-#' @return the probability vector or value
+#' @return The probability vector or value
 #' @export
 #'
 #' @examples beta_sample_comparison(5000, 58, 44, 31, 21)
