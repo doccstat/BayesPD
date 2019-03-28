@@ -78,7 +78,7 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 
 	if(plot) {
 		if(n == 1) {
-			writeLines("Warning: Whats the point of plot one single point?")
+			writeLines("Warning: Whats the point of plotting one single point?")
 		}
 		plot(1:n, probability)
 	}
