@@ -39,8 +39,14 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 		}
 		theta2 <- rbeta(sample_size, beta_a2, beta_b2)
 		probability <- rep(0, n)
-		for (i in 1:n) {
-			probability[i] <- mean(rbeta(sample_size, beta_a1[i], beta_b1[i]) < theta2)
+		if(theta1_smaller_than_theta2) {
+			for (i in 1:n) {
+				probability[i] <- mean(rbeta(sample_size, beta_a1[i], beta_b1[i]) < theta2)
+			}
+		} else {
+			for (i in 1:n) {
+				probability[i] <- mean(rbeta(sample_size, beta_a1[i], beta_b1[i]) > theta2)
+			}
 		}
 	}
 
@@ -57,8 +63,16 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 		}
 		theta1 <- rbeta(sample_size, beta_a1, beta_b1)
 		probability <- rep(0, n)
-		for (i in 1:n) {
-			probability[i] <- mean(theta1 < rbeta(sample_size, beta_a2[i], beta_b2[i]))
+		if(theta1_smaller_than_theta2) {
+			for (i in 1:n) {
+				probability[i] <- mean(theta1 < rbeta(sample_size, beta_a2[i], beta_b2[i]))
+			}
+		} else {
+			for (i in 1:n) {
+				probability[i] <- mean(theta1 > rbeta(sample_size, beta_a2[i], beta_b2[i]))
+			}
+		}
+	}
 		}
 	}
 
