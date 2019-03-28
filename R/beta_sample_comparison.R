@@ -1,12 +1,12 @@
 #' Sampling beta distributions and compare the two variables
 #'
-#' @param sample_size how many samples to produce
-#' @param beta_a1 first parameter of theta1
-#' @param beta_b1 second parameter of theta1
-#' @param beta_a2 first parameter of theta2
-#' @param beta_b2 second parameter of theta2
-#' @param theta1_smaller_than_theta2 how to make the comparison
-#' @param plot whether to plot the figure showing the tendency of probability change
+#' @param sample_size How many samples to produce.
+#' @param beta_a1 First parameter of theta1.
+#' @param beta_b1 Second parameter of theta1.
+#' @param beta_a2 First parameter of theta2.
+#' @param beta_b2 Second parameter of theta2.
+#' @param theta1_smaller_than_theta2 How to make the comparison. If FALSE, compute theta1 > theta2
+#' @param plot Whether to plot the figure showing the tendency of probability change
 #'
 #' @return the probability vector or value
 #' @export
