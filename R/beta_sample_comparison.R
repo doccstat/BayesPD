@@ -26,7 +26,7 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 
 	# TODO: check the positive in the vectors
 
-	if(is.vector(beta_a1)) {
+	if(is.vector(beta_a1) && length(beta_a1) > 1) {
 		if(!is.numeric(beta_a2) || !is.numeric(beta_b2)) {
 			stop("Error: beta_1 and beta_2 can not be vectors at the same time!")
 		}
@@ -44,7 +44,7 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 		}
 	}
 
-	if(is.vector(beta_a2)) {
+	if(is.vector(beta_a2) && length(beta_a2) > 1) {
 		if(!is.numeric(beta_a1) || !is.numeric(beta_b1)) {
 			stop("Error: beta_1 and beta_2 can not be vectors at the same time!")
 		}
