@@ -2,27 +2,39 @@
 % Please edit documentation in R/beta_sample_comparison.R
 \name{beta_sample_comparison}
 \alias{beta_sample_comparison}
-\title{Sampling beta distributions and compute the probability of theta1 < theta2}
+\title{Sampling beta distributions and compare the two variables}
 \usage{
-beta_sample_comparison(sample_size, beta_a1, beta_b1, beta_a2, beta_b2)
+beta_sample_comparison(sample_size = sample_size, beta_a1 = beta_a1,
+  beta_b1 = beta_b1, beta_a2 = beta_a2, beta_b2 = beta_b2,
+  theta1_smaller_than_theta2 = TRUE, plot = FALSE)
 }
 \arguments{
-\item{sample_size}{how many samples to produce}
+\item{sample_size}{How many samples to produce.}
 
-\item{beta_a1}{first parameter of theta1}
+\item{beta_a1}{First parameter of theta1.}
 
-\item{beta_b1}{second parameter of theta1}
+\item{beta_b1}{Second parameter of theta1.}
 
-\item{beta_a2}{first parameter of theta2}
+\item{beta_a2}{First parameter of theta2.}
 
-\item{beta_b2}{second parameter of theta2}
+\item{beta_b2}{Second parameter of theta2.}
+
+\item{theta1_smaller_than_theta2}{How to make the comparison. If FALSE, compute theta1 > theta2}
+
+\item{plot}{Whether to plot the figure showing the tendency of probability change}
 }
 \value{
-the probability of theta1 < theta2
+The probability vector or value
 }
 \description{
-Sampling beta distributions and compute the probability of theta1 < theta2
+Sampling beta distributions and compare the two variables
 }
 \examples{
-beta_sample_comparison(5000, 58, 44, 31, 21)
+beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21)
+beta_sample_comparison(sample_size = 6000, beta_a1 = c(58, 58), beta_b1 = c(44, 50), beta_a2 = 31, beta_b2 = 21)
+beta_sample_comparison(sample_size = 7000, beta_a1 = 58, beta_b1 = 44, beta_a2 = c(31, 31), beta_b2 = c(21, 30))
+beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE)
+beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE, plot = TRUE)
+beta_sample_comparison(sample_size = 9000, beta_a1 = 50:60, beta_b1 = 40:50, beta_a2 = 31, beta_b2 = 21, plot = TRUE)
+beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 30:40, beta_b2 = 20:30, plot = TRUE)
 }
