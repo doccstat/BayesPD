@@ -2,7 +2,7 @@
 % Please edit documentation in R/posterior_predictive_sample_comparison.R
 \name{posterior_predictive_sample_comparison}
 \alias{posterior_predictive_sample_comparison}
-\title{Poisson model with gamma prior, compare the two variables}
+\title{Poisson model with gamma prior, compare the two parameters}
 \usage{
 posterior_predictive_sample_comparison(sample_size = sample_size,
   gamma_a1 = gamma_a1, gamma_b1 = gamma_b1, gamma_a2 = gamma_a2,
@@ -28,7 +28,7 @@ posterior_predictive_sample_comparison(sample_size = sample_size,
 The probability vector or value
 }
 \description{
-Poisson model with gamma prior, compare the two variables
+Poisson model with gamma prior, compare the two parameters
 }
 \examples{
 posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
