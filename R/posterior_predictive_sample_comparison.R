@@ -47,6 +47,35 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		}
 	}
 
+	if(is.vector(gamma_a2) && length(gamma_a2) > 1) {
+		if(!is.numeric(gamma_a1) || !is.numeric(gamma_b1)) {
+			stop("Error: gamma_1 and gamma_2 can not be vectors at the same time!")
+		}
+		if(gamma_a1 <= 0 || gamma_b1 <= 0) {
+			stop("Error: gamma_a1 and gamma_b1 should be positive!")
+		}
+		n <- length(gamma_a2)
+		if(!is.vector(gamma_b2) || length(gamma_b2) != n) {
+			stop("Error: the dimensions of gamma_a2 and gamma_b2 aren't the same!")
+		}
+		theta1 <- rgamma(sample_size, gamma_a1, gamma_b1)
+		tildeya <- rpois(sample_size, theta1)
+		probability <- rep(0, n)
+		if(tildeya_smaller_than_tildeyb) {
+			for (i in 1:n) {
+				theta2 <- rgamma(sample_size, gamma_a2[i], gamma_b2[i])
+				tildeyb <- rpois(sample_size, theta2)
+				probability[i] <- mean(tildeya < tildeyb)
+			}
+		} else {
+			for (i in 1:n) {
+				theta2 <- rgamma(sample_size, gamma_a2[i], gamma_b2[i])
+				tildeyb <- rpois(sample_size, theta2)
+				probability[i] <- mean(tildeya > tildeyb)
+			}
+		}
+	}
+
 	if(plot) {
 		if(n == 1) {
 			writeLines("Warning: Whats the point of plotting one single point?")
