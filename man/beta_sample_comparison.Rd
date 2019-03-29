@@ -19,9 +19,9 @@ beta_sample_comparison(sample_size = sample_size, beta_a1 = beta_a1,
 
 \item{beta_b2}{Second parameter of theta2.}
 
-\item{theta1_smaller_than_theta2}{How to make the comparison. If FALSE, compute theta1 > theta2}
+\item{theta1_smaller_than_theta2}{How to make the comparison. If FALSE, compute theta1 > theta2.}
 
-\item{plot}{Whether to plot the figure showing the tendency of probability change}
+\item{plot}{Whether to plot the figure showing the tendency of probability change.}
 }
 \value{
 The probability vector or value
