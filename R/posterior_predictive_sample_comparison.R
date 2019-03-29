@@ -76,6 +76,15 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		}
 	}
 
+	if(length(gamma_a1) == 1 && length(gamma_b1) == 1 && length(gamma_a2) == 1 && length(gamma_b2) == 1) {
+		n <- 1
+		if(theta1_smaller_than_theta2) {
+			probability <- mean(rpois(sample_size, rgamma(sample_size, gamma_a1, gamma_b1)) < rpois(sample_size, rgamma(sample_size, gamma_a2, gamma_b2)))
+		} else {
+			probability <- mean(rpois(sample_size, rgamma(sample_size, gamma_a1, gamma_b1)) > rpois(sample_size, rgamma(sample_size, gamma_a2, gamma_b2)))
+		}
+	}
+
 	if(plot) {
 		if(n == 1) {
 			writeLines("Warning: Whats the point of plotting one single point?")
