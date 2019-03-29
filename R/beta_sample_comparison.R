@@ -5,8 +5,8 @@
 #' @param beta_b1 Second parameter of theta1.
 #' @param beta_a2 First parameter of theta2.
 #' @param beta_b2 Second parameter of theta2.
-#' @param theta1_smaller_than_theta2 How to make the comparison. If FALSE, compute theta1 > theta2
-#' @param plot Whether to plot the figure showing the tendency of probability change
+#' @param theta1_smaller_than_theta2 How to make the comparison. If FALSE, compute theta1 > theta2.
+#' @param plot Whether to plot the figure showing the tendency of probability change.
 #'
 #' @return The probability vector or value
 #' @export
