@@ -1,4 +1,4 @@
-#' Poisson model with gamma prior, compare the two variables
+#' Poisson model with gamma prior, compare the two parameters
 #'
 #' @param sample_size How many samples to produce.
 #' @param gamma_a1 First parameter of theta1.
