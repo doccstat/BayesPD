@@ -6,7 +6,7 @@
 \usage{
 posterior_predictive_sample_comparison(sample_size = sample_size,
   gamma_a1 = gamma_a1, gamma_b1 = gamma_b1, gamma_a2 = gamma_a2,
-  gamma_b2 = gamma_b2, theta1_smaller_than_theta2 = TRUE,
+  gamma_b2 = gamma_b2, tildeya_smaller_than_tildeyb = TRUE,
   plot = FALSE)
 }
 \arguments{
@@ -20,7 +20,7 @@ posterior_predictive_sample_comparison(sample_size = sample_size,
 
 \item{gamma_b2}{Second parameter of theta2.}
 
-\item{theta1_smaller_than_theta2}{How to make the comparison. If FALSE, compute theta1 > theta2.}
+\item{tildeya_smaller_than_tildeyb}{How to make the comparison. If FALSE, compute theta1 > theta2.}
 
 \item{plot}{Whether to plot the figure showing the tendency of probability change.}
 }
@@ -31,5 +31,5 @@ The probability vector or value
 Poisson model with gamma prior, compare the two variables
 }
 \examples{
-posterior_predictive_sample_comparison(sample_size = 5000, beta_a1 = 12*(1:100)+113, beta_b1 = 13+(1:100), beta_a2 = 237, beta_b2 = 20, theta1_smaller_than_theta2 = FALSE, plot = TRUE)
+posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
 }
