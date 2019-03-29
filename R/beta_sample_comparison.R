@@ -37,15 +37,15 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 		if(!is.vector(beta_b1) || length(beta_b1) != n) {
 			stop("Error: the dimensions of beta_a1 and beta_b1 aren't the same!")
 		}
-		theta2 <- rbeta(sample_size, beta_a2, beta_b2)
+		theta2 <- stats::rbeta(sample_size, beta_a2, beta_b2)
 		probability <- rep(0, n)
 		if(theta1_smaller_than_theta2) {
 			for (i in 1:n) {
-				probability[i] <- mean(rbeta(sample_size, beta_a1[i], beta_b1[i]) < theta2)
+				probability[i] <- mean(stats::rbeta(sample_size, beta_a1[i], beta_b1[i]) < theta2)
 			}
 		} else {
 			for (i in 1:n) {
-				probability[i] <- mean(rbeta(sample_size, beta_a1[i], beta_b1[i]) > theta2)
+				probability[i] <- mean(stats::rbeta(sample_size, beta_a1[i], beta_b1[i]) > theta2)
 			}
 		}
 	}
@@ -61,15 +61,15 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 		if(!is.vector(beta_b2) || length(beta_b2) != n) {
 			stop("Error: the dimensions of beta_a2 and beta_b2 aren't the same!")
 		}
-		theta1 <- rbeta(sample_size, beta_a1, beta_b1)
+		theta1 <- stats::rbeta(sample_size, beta_a1, beta_b1)
 		probability <- rep(0, n)
 		if(theta1_smaller_than_theta2) {
 			for (i in 1:n) {
-				probability[i] <- mean(theta1 < rbeta(sample_size, beta_a2[i], beta_b2[i]))
+				probability[i] <- mean(theta1 < stats::rbeta(sample_size, beta_a2[i], beta_b2[i]))
 			}
 		} else {
 			for (i in 1:n) {
-				probability[i] <- mean(theta1 > rbeta(sample_size, beta_a2[i], beta_b2[i]))
+				probability[i] <- mean(theta1 > stats::rbeta(sample_size, beta_a2[i], beta_b2[i]))
 			}
 		}
 	}
@@ -77,9 +77,9 @@ beta_sample_comparison <- function(sample_size = sample_size, beta_a1 = beta_a1,
 	if(length(beta_a1) == 1 && length(beta_b1) == 1 && length(beta_a2) == 1 && length(beta_b2) == 1) {
 		n <- 1
 		if(theta1_smaller_than_theta2) {
-			probability <- mean(rbeta(sample_size, beta_a1, beta_b1) < rbeta(sample_size, beta_a2, beta_b2))
+			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) < stats::rbeta(sample_size, beta_a2, beta_b2))
 		} else {
-			probability <- mean(rbeta(sample_size, beta_a1, beta_b1) > rbeta(sample_size, beta_a2, beta_b2))
+			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) > stats::rbeta(sample_size, beta_a2, beta_b2))
 		}
 	}
 

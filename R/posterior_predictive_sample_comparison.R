@@ -29,19 +29,19 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		if(!is.vector(gamma_b1) || length(gamma_b1) != n) {
 			stop("Error: the dimensions of gamma_a1 and gamma_b1 aren't the same!")
 		}
-		theta2 <- rgamma(sample_size, gamma_a2, gamma_b2)
-		tildeyb <- rpois(sample_size, theta2)
+		theta2 <- stats::rgamma(sample_size, gamma_a2, gamma_b2)
+		tildeyb <- stats::rpois(sample_size, theta2)
 		probability <- rep(0, n)
 		if(tildeya_smaller_than_tildeyb) {
 			for (i in 1:n) {
-				theta1 <- rgamma(sample_size, gamma_a1[i], gamma_b1[i])
-				tildeya <- rpois(sample_size, theta1)
+				theta1 <- stats::rgamma(sample_size, gamma_a1[i], gamma_b1[i])
+				tildeya <- stats::rpois(sample_size, theta1)
 				probability[i] <- mean(tildeyb < tildeya)
 			}
 		} else {
 			for (i in 1:n) {
-				theta1 <- rgamma(sample_size, gamma_a1[i], gamma_b1[i])
-				tildeya <- rpois(sample_size, theta1)
+				theta1 <- stats::rgamma(sample_size, gamma_a1[i], gamma_b1[i])
+				tildeya <- stats::rpois(sample_size, theta1)
 				probability[i] <- mean(tildeyb > tildeya)
 			}
 		}
@@ -58,19 +58,19 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		if(!is.vector(gamma_b2) || length(gamma_b2) != n) {
 			stop("Error: the dimensions of gamma_a2 and gamma_b2 aren't the same!")
 		}
-		theta1 <- rgamma(sample_size, gamma_a1, gamma_b1)
-		tildeya <- rpois(sample_size, theta1)
+		theta1 <- stats::rgamma(sample_size, gamma_a1, gamma_b1)
+		tildeya <- stats::rpois(sample_size, theta1)
 		probability <- rep(0, n)
 		if(tildeya_smaller_than_tildeyb) {
 			for (i in 1:n) {
-				theta2 <- rgamma(sample_size, gamma_a2[i], gamma_b2[i])
-				tildeyb <- rpois(sample_size, theta2)
+				theta2 <- stats::rgamma(sample_size, gamma_a2[i], gamma_b2[i])
+				tildeyb <- stats::rpois(sample_size, theta2)
 				probability[i] <- mean(tildeya < tildeyb)
 			}
 		} else {
 			for (i in 1:n) {
-				theta2 <- rgamma(sample_size, gamma_a2[i], gamma_b2[i])
-				tildeyb <- rpois(sample_size, theta2)
+				theta2 <- stats::rgamma(sample_size, gamma_a2[i], gamma_b2[i])
+				tildeyb <- stats::rpois(sample_size, theta2)
 				probability[i] <- mean(tildeya > tildeyb)
 			}
 		}
@@ -78,10 +78,10 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 
 	if(length(gamma_a1) == 1 && length(gamma_b1) == 1 && length(gamma_a2) == 1 && length(gamma_b2) == 1) {
 		n <- 1
-		if(theta1_smaller_than_theta2) {
-			probability <- mean(rpois(sample_size, rgamma(sample_size, gamma_a1, gamma_b1)) < rpois(sample_size, rgamma(sample_size, gamma_a2, gamma_b2)))
+		if(tildeya_smaller_than_tildeyb) {
+			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) < stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
 		} else {
-			probability <- mean(rpois(sample_size, rgamma(sample_size, gamma_a1, gamma_b1)) > rpois(sample_size, rgamma(sample_size, gamma_a2, gamma_b2)))
+			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) > stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
 		}
 	}
 
