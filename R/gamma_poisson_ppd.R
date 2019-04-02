@@ -39,5 +39,8 @@ gamma_poisson_ppd <- function(sample_size = sample_size, gamma_a1 = gamma_a1, ga
 
 	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
 	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
+
+	quantile(theta2_posterior - theta1_posterior, quantile_interval)
+	quantile(y_tilde2 - y_tilde1, quantile_interval)
 }
 
