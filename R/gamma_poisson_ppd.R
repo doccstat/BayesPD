@@ -48,5 +48,15 @@ gamma_poisson_ppd <- function(sample_size = sample_size, gamma_a1 = gamma_a1, ga
 
 	plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
 	points(table(y2)/n2)
+
+	zeroes = rep(NA, sample_size)
+	ones = rep(NA, sample_size)
+	for(i in 1:sample_size) {
+		y = rpois(218, theta2_posterior[i])
+		zeroes[i] = sum(y==0)
+		ones[i] = sum(y==1)
+	}
+	plot(zeroes, ones, xlim=c(min(zeroes),max(zeroes)), ylim=c(min(ones),max(ones)), pch='.')
+	points(sum(y2==0), sum(y2==1), col="red")
 }
 
