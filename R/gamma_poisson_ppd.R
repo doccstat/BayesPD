@@ -42,5 +42,11 @@ gamma_poisson_ppd <- function(sample_size = sample_size, gamma_a1 = gamma_a1, ga
 
 	quantile(theta2_posterior - theta1_posterior, quantile_interval)
 	quantile(y_tilde2 - y_tilde1, quantile_interval)
+
+	plot(0:max(y1)+0.2, dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
+	points(table(y1)/n2)
+
+	plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
+	points(table(y2)/n2)
 }
 
