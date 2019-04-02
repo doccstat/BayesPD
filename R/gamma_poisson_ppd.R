@@ -35,5 +35,8 @@ gamma_poisson_ppd <- function(sample_size = sample_size, gamma_a1 = gamma_a1, ga
 		plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
 		plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
 	}
+
+	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
+	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
 }
 
