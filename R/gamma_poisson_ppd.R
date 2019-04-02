@@ -15,5 +15,10 @@ gamma_poisson_ppd <- function(sample_size = sample_size, gamma_a1 = gamma_a1, ga
 		y_tilde1 <- rnbinom(sample_size, sum(y1) + gamma_a1, p1)
 		y_tilde2 <- rnbinom(sample_size, sum(y2) + gamma_a2, p2)
 	}
+
+	if(plot) {
+		plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
+		plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
+	}
 }
 
