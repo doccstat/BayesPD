@@ -19,7 +19,8 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 
 	sigma_bar.1 <- mean(sqrt(sigma_square.1)) 
 	confidence_interval_sigma_bar.1 <- quantile(sqrt(sigma_square.1), confidence_interval)
-
+	# MCMC for posterior predictive
+	y_tilde.1 <- rnorm(sample_size, theta.1, sqrt(sigma_square.1))
 
 
 	y_bar.2 <- mean(y_2)
@@ -40,6 +41,8 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 
 	sigma_bar.2 <- mean(sqrt(sigma_square.2)) 
 	confidence_interval_sigma_bar.2 <- quantile(sqrt(sigma_square.2), confidence_interval)
+	# MCMC for posterior predictive
+	y_tilde.2 <- rnorm(sample_size, theta.2, sqrt(sigma_square.2))
 
 
 	y_bar.3 <- mean(y_3)
@@ -60,5 +63,7 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 
 	sigma_bar.3 <- mean(sqrt(sigma_square.3)) 
 	confidence_interval_sigma_bar.3 <- quantile(sqrt(sigma_square.3), confidence_interval)
-}
+	# MCMC for posterior predictive
+	y_tilde.3 <- rnorm(sample_size, theta.3, sqrt(sigma_square.3))
+
 
