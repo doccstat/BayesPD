@@ -67,3 +67,21 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_tilde.3 <- rnorm(sample_size, theta.3, sqrt(sigma_square.3))
 
 
+	mean(theta.1 < theta.2 & theta.2 < theta.3) 
+	mean(theta.1 < theta.3 & theta.3 < theta.2) 
+	mean(theta.2 < theta.1 & theta.1 < theta.3) 
+	mean(theta.2 < theta.3 & theta.3 < theta.1) 
+	mean(theta.3 < theta.1 & theta.1 < theta.2) 
+	mean(theta.3 < theta.2 & theta.2 < theta.1)
+
+	mean(ypred.1 < ypred.2 & ypred.2 < ypred.3) 
+	mean(ypred.1 < ypred.3 & ypred.3 < ypred.2) 
+	mean(ypred.2 < ypred.1 & ypred.1 < ypred.3) 
+	mean(ypred.2 < ypred.3 & ypred.3 < ypred.1) 
+	mean(ypred.3 < ypred.1 & ypred.1 < ypred.2) 
+	mean(ypred.3 < ypred.2 & ypred.2 < ypred.1)
+
+
+	mean(theta.1 > theta.2 & theta.1 > theta.3) 
+	mean(ypred.1 > ypred.2 & ypred.1 > ypred.3)
+}
