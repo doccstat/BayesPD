@@ -15,3 +15,8 @@ y_bar.1 <- mean(hours1)
 y_var.1 <- var(hours1) 
 y_sd.1 <- sd(hours1)
 length.1 <- length(hours1)
+
+kappa_n.1 <- kappa_0 + length.1
+mu_n.1 <- (kappa_0 * mu_0 + length.1 * y_bar.1) / kappa_n.1 
+nu_n.1 <- nu_0 + length.1 
+sigma_n_square.1 <- (1 / nu_n.1) * (nu_0 * sigma_0_sequare + (length.1 - 1) * y_var.1 + ((kappa_0 * length.1) / kappa_n.1) * (y_bar.1 - mu_0)^2)
