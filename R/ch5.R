@@ -19,5 +19,46 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 
 	sigma_bar.1 <- mean(sqrt(sigma_square.1)) 
 	confidence_interval_sigma_bar.1 <- quantile(sqrt(sigma_square.1), confidence_interval)
+
+
+
+	y_bar.2 <- mean(y_2)
+	y_var.2 <- var(y_2) 
+	y_sd.2 <- sd(y_2)
+	length.2 <- length(y_2)
+	kappa_n.2 <- kappa_0 + length.2
+	mu_n.2 <- (kappa_0 * mu_0 + length.2 * y_bar.2) / kappa_n.2 
+	nu_n.2 <- nu_0 + length.2 
+	sigma_n_square.2 <- (1 / nu_n.2) * (nu_0 * sigma_0_sequare + (length.2 - 1) * y_var.2 + ((kappa_0 * length.2) / kappa_n.2) * (y_bar.2 - mu_0)^2)
+	# sampling from the posterior distribution
+	sigma_square_inverse.2 <- rgamma(sample_size, nu_n.2 / 2, nu_n.2*sigma_n_square.2 / 2) 
+	sigma_square.2 <- 1 / sigma_square_inverse.2
+	theta.2 <- rnorm(sample_size, mu_n.2, sqrt(sigma_square.2 / kappa_n.2))
+
+	theta_bar.2 <- mean(theta.2)
+	confidence_interval_theta.2 <- quantile(theta.2, confidence_interval)
+
+	sigma_bar.2 <- mean(sqrt(sigma_square.2)) 
+	confidence_interval_sigma_bar.2 <- quantile(sqrt(sigma_square.2), confidence_interval)
+
+
+	y_bar.3 <- mean(y_3)
+	y_var.3 <- var(y_3) 
+	y_sd.3 <- sd(y_3)
+	length.3 <- length(y_3)
+	kappa_n.3 <- kappa_0 + length.3
+	mu_n.3 <- (kappa_0 * mu_0 + length.3 * y_bar.3) / kappa_n.3 
+	nu_n.3 <- nu_0 + length.3 
+	sigma_n_square.3 <- (1 / nu_n.3) * (nu_0 * sigma_0_sequare + (length.3 - 1) * y_var.3 + ((kappa_0 * length.3) / kappa_n.3) * (y_bar.3 - mu_0)^2)
+	# sampling from the posterior distribution
+	sigma_square_inverse.3 <- rgamma(sample_size, nu_n.3 / 2, nu_n.3*sigma_n_square.3 / 2) 
+	sigma_square.3 <- 1 / sigma_square_inverse.3
+	theta.3 <- rnorm(sample_size, mu_n.3, sqrt(sigma_square.3 / kappa_n.3))
+
+	theta_bar.3 <- mean(theta.3)
+	confidence_interval_theta.3 <- quantile(theta.3, confidence_interval)
+
+	sigma_bar.3 <- mean(sqrt(sigma_square.3)) 
+	confidence_interval_sigma_bar.3 <- quantile(sqrt(sigma_square.3), confidence_interval)
 }
 
