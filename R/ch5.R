@@ -11,7 +11,6 @@ sigma_0_sequare <- 4
 kappa_0 <- 1
 nu_0 <- 2
 
-# hours1=school1.dat$V1 
 y_bar.1 <- mean(hours1)
 y_var.1 <- var(hours1) 
 y_sd.1 <- sd(hours1)
