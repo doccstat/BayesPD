@@ -13,5 +13,11 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	sigma_square_inverse.1 <- rgamma(sample_size, nu_n.1 / 2, nu_n.1*sigma_n_square.1 / 2) 
 	sigma_square.1 <- 1 / sigma_square_inverse.1
 	theta.1 <- rnorm(sample_size, mu_n.1, sqrt(sigma_square.1 / kappa_n.1))
+
+	theta_bar.1 <- mean(theta.1)
+	confidence_interval_theta.1 <- quantile(theta.1, confidence_interval)
+
+	sigma_bar.1 <- mean(sqrt(sigma_square.1)) 
+	confidence_interval_sigma_bar.1 <- quantile(sqrt(sigma_square.1), confidence_interval)
 }
 
