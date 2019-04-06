@@ -14,4 +14,5 @@
 #' @return
 #' @export
 #'
+#' @examples sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32)) # sigma_0_square = 4?
 }
