@@ -1,4 +1,17 @@
-sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1)
-sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_bar.2, standard_deviation.2) {
-	
+#' Title
+#'
+#' @param sample_size
+#' @param y_bar.1
+#' @param standard_deviation.1
+#' @param y_bar.2
+#' @param standard_deviation.2
+#' @param mu_0
+#' @param sigma_0_square
+#' @param n
+#' @param kappa_0
+#' @param nu_0
+#'
+#' @return
+#' @export
+#'
 }
