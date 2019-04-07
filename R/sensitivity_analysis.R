@@ -19,4 +19,14 @@ sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_b
 	probability <- rep(0,length(kappa_0))
 
 	for(i in 1:length(kappa_0)) {
+		# Compute posterior parameters
+		kappa_n <- kappa_0[i] + n
+		mu_n.1 <- (kappa_0[i] * mu_0 + n * y_bar.1) / kappa_n
+		nu_n <- nu_0[i] + n
+		sigma_n_square.1 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.1^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.1 - mu_0)^2)
+		# Compute posterior parameters
+		kappa_n <- kappa_0[i] + n
+		mu_n.2 <- (kappa_0[i] * mu_0 + n * y_bar.2) / kappa_n
+		nu_n <- nu_0[i] + n
+		sigma_n_square.2 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.2^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.2 - mu_0)^2)
 }
