@@ -24,7 +24,7 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		stop("Error: sample size should be positive integer!")
 	}
 
-	# TODO: check the positive in the vectors
+	n <- 1
 
 	if(is.vector(beta_a1) && length(beta_a1) > 1) {
 		if(!is.numeric(beta_a2) || !is.numeric(beta_b2)) {
