@@ -99,15 +99,6 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		}
 	}
 
-	if(length(beta_a1) == 1 && length(beta_b1) == 1 && length(beta_a2) == 1 && length(beta_b2) == 1) {
-		n <- 1
-		if(theta1_smaller_than_theta2) {
-			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) < stats::rbeta(sample_size, beta_a2, beta_b2))
-		} else {
-			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) > stats::rbeta(sample_size, beta_a2, beta_b2))
-		}
-	}
-
 	if(plot) {
 		if(n == 1) {
 			writeLines("Warning: Whats the point of plotting one single point?")
