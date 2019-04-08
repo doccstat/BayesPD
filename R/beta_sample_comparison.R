@@ -45,6 +45,15 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		if(!vector_check(beta_b1, length(beta_a1))) {
 			stop("Error: the dimensions of beta_a1 and beta_b1 aren't the same!")
 		}
+		beta_b1 <- beta_b1[beta_a1 > 0]
+		beta_a1 <- beta_a1[beta_a1 > 0]
+		beta_a1 <- beta_a1[beta_b1 > 0]
+		beta_b1 <- beta_b1[beta_b1 > 0]
+		if(!vector_check(beta_a1) && !vector_check(beta_b1, 1)) {
+			stop("No valid pairs in the vector beta_1.")
+		}
+
+		n <- length(beta_a1)
 		theta2 <- stats::rbeta(sample_size, beta_a2, beta_b2)
 		probability <- rep(0, n)
 		if(theta1_smaller_than_theta2) {
@@ -68,6 +77,15 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		if(!vector_check(beta_b2, length(beta_a2))) {
 			stop("Error: the dimensions of beta_a2 and beta_b2 aren't the same!")
 		}
+		beta_b2 <- beta_b2[beta_a2 > 0]
+		beta_a2 <- beta_a2[beta_a2 > 0]
+		beta_a2 <- beta_a2[beta_b2 > 0]
+		beta_b2 <- beta_b2[beta_b2 > 0]
+		if(!vector_check(beta_a2) && !vector_check(beta_b2, 1)) {
+			stop("No valid pairs in the vector beta_2.")
+		}
+
+		n <- length(beta_a2)
 		theta1 <- stats::rbeta(sample_size, beta_a1, beta_b1)
 		probability <- rep(0, n)
 		if(theta1_smaller_than_theta2) {
