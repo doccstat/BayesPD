@@ -28,6 +28,13 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 
 	if(is.vector(beta_a1) && length(beta_a1) > 1) {
 		if(!is.numeric(beta_a2) || !is.numeric(beta_b2)) {
+	if(vector_check(beta_a1, 1) && vector_check(beta_b1, 1) && vector_check(beta_a2, 1) && vector_check(beta_b2, 1)) {
+		if(theta1_smaller_than_theta2) {
+			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) < stats::rbeta(sample_size, beta_a2, beta_b2))
+		} else {
+			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) > stats::rbeta(sample_size, beta_a2, beta_b2))
+		}
+	}
 			stop("Error: beta_1 and beta_2 can not be vectors at the same time!")
 		}
 		if(beta_a2 <= 0 || beta_b2 <= 0) {
