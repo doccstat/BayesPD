@@ -26,8 +26,6 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 
 	n <- 1
 
-	if(is.vector(beta_a1) && length(beta_a1) > 1) {
-		if(!is.numeric(beta_a2) || !is.numeric(beta_b2)) {
 	if(vector_check(beta_a1, 1) && vector_check(beta_b1, 1) && vector_check(beta_a2, 1) && vector_check(beta_b2, 1)) {
 		if(theta1_smaller_than_theta2) {
 			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) < stats::rbeta(sample_size, beta_a2, beta_b2))
@@ -35,13 +33,16 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 			probability <- mean(stats::rbeta(sample_size, beta_a1, beta_b1) > stats::rbeta(sample_size, beta_a2, beta_b2))
 		}
 	}
+
+	if(vector_check(beta_a1)) {
+		if(vector_check(beta_a2) || vector_check(beta_b2)) {
 			stop("Error: beta_1 and beta_2 can not be vectors at the same time!")
 		}
 		if(beta_a2 <= 0 || beta_b2 <= 0) {
 			stop("Error: beta_a2 and beta_b2 should be positive!")
 		}
-		n <- length(beta_a1)
-		if(!is.vector(beta_b1) || length(beta_b1) != n) {
+		
+		if(!vector_check(beta_b1, length(beta_a1))) {
 			stop("Error: the dimensions of beta_a1 and beta_b1 aren't the same!")
 		}
 		theta2 <- stats::rbeta(sample_size, beta_a2, beta_b2)
@@ -57,15 +58,14 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		}
 	}
 
-	if(is.vector(beta_a2) && length(beta_a2) > 1) {
-		if(!is.numeric(beta_a1) || !is.numeric(beta_b1)) {
+	if(vector_check(beta_a2)) {
+		if(vector_check(beta_a1) || vector_check(beta_b1)) {
 			stop("Error: beta_1 and beta_2 can not be vectors at the same time!")
 		}
 		if(beta_a1 <= 0 || beta_b1 <= 0) {
 			stop("Error: beta_a1 and beta_b1 should be positive!")
 		}
-		n <- length(beta_a2)
-		if(!is.vector(beta_b2) || length(beta_b2) != n) {
+		if(!vector_check(beta_b2, length(beta_a2))) {
 			stop("Error: the dimensions of beta_a2 and beta_b2 aren't the same!")
 		}
 		theta1 <- stats::rbeta(sample_size, beta_a1, beta_b1)
