@@ -4,8 +4,7 @@
 \alias{beta_sample_comparison}
 \title{Sampling beta distributions and compare the two variables}
 \usage{
-beta_sample_comparison(sample_size = sample_size, beta_a1 = beta_a1,
-  beta_b1 = beta_b1, beta_a2 = beta_a2, beta_b2 = beta_b2,
+beta_sample_comparison(sample_size, beta_a1, beta_b1, beta_a2, beta_b2,
   theta1_smaller_than_theta2 = TRUE, plot = FALSE)
 }
 \arguments{
@@ -24,7 +23,7 @@ beta_sample_comparison(sample_size = sample_size, beta_a1 = beta_a1,
 \item{plot}{Whether to plot the figure showing the tendency of probability change.}
 }
 \value{
-The probability vector or value
+The probability vector or value. If the variables supplied consists of non-positive numbers, the program will ignore that pair of alpha and beta at the same time.
 }
 \description{
 Sampling beta distributions and compare the two variables

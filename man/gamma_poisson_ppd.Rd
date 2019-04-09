@@ -4,9 +4,9 @@
 \alias{gamma_poisson_ppd}
 \title{Title Poisson model of parameter theta, given gamma prior and the data. Sampling the posterior predictive distribution.}
 \usage{
-gamma_poisson_ppd(sample_size = sample_size, gamma_a1 = gamma_a1,
-  gamma_b1 = gamma_b1, y1 = y1, gamma_a2 = gamma_a2,
-  gamma_b2 = gamma_b2, y2 = y2, using_MCMC = FALSE, plot = FALSE)
+gamma_poisson_ppd(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gamma_b2,
+  y2, confidence_interval = NULL, using_MCMC = FALSE,
+  poisson_fitting_mean = NULL)
 }
 \arguments{
 \item{sample_size}{How many samples to produce.}
@@ -23,9 +23,9 @@ gamma_poisson_ppd(sample_size = sample_size, gamma_a1 = gamma_a1,
 
 \item{y2}{Given data of the Possion distribution with gamma prior for the parameter theta2.}
 
-\item{using_MCMC}{Whether to use MCMC to sampling the posterior predictive distribution.}
+\item{confidence_interval}{Confidence interval to be calculated.}
 
-\item{plot}{whether to plot the parameter samplings.}
+\item{using_MCMC}{Whether to use MCMC to sampling the posterior predictive distribution.}
 }
 \value{
 Sampling of the posterior predictive distribution.
@@ -34,5 +34,7 @@ Sampling of the posterior predictive distribution.
 Title Poisson model of parameter theta, given gamma prior and the data. Sampling the posterior predictive distribution.
 }
 \examples{
-gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), using_MCMC = FALSE, plot = TRUE)
+gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), using_MCMC = FALSE)
+gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), using_MCMC = TRUE)
+gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), confidence_interval = c(0.025, 0.975), poisson_fitting_mean = 1.4)
 }
