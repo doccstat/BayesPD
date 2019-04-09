@@ -59,9 +59,6 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	# Parameter theta in a Poisson model given Gamma prior is again Gamma distribution.
 	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
 	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
-
-	quantile(theta2_posterior - theta1_posterior, confidence_interval)
-	quantile(y_tilde2 - y_tilde1, confidence_interval)
 	
 	# sampling data then check 
 	zeroes = rep(NA, sample_size)
@@ -84,5 +81,15 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
 		points(table(y2)/n2)
 	}
+
+	if(!is.null(confidence_interval)) {
+		if(!vector_check(confidence_interval, 2) || confidence_interval[1] >= confidence_interval[2] || confidence_interval[1] < 0 || confidence_interval[2] > 1) {
+			stop("Error: Confidence interval is not a valid pair of percentages.")
+		}
+		theta2_minus_theta1_quantile <- quantile(theta2_posterior - theta1_posterior, confidence_interval)
+		y_tidle2_minus_ytilde1_quantile <- quantile(y_tilde2 - y_tilde1, confidence_interval)
+		return(list(theta2_minus_theta1_quantile = theta2_minus_theta1_quantile, y_tidle2_minus_ytilde1_quantile = y_tidle2_minus_ytilde1_quantile))
+	}
+	
 }
 
