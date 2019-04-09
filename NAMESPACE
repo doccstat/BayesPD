@@ -2,4 +2,7 @@
 
 export(beta_sample_comparison)
 export(gamma_poisson_ppd)
+export(normal_gamma_conjugate_family)
 export(posterior_predictive_sample_comparison)
+export(sensitivity_analysis)
+export(vector_check)
