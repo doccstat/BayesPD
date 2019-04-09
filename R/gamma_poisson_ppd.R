@@ -62,13 +62,8 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 
 	quantile(theta2_posterior - theta1_posterior, confidence_interval)
 	quantile(y_tilde2 - y_tilde1, confidence_interval)
-
-	plot(0:max(y1)+0.2, dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
-	points(table(y1)/n2)
-
-	plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
-	points(table(y2)/n2)
-
+	
+	# sampling data then check 
 	zeroes = rep(NA, sample_size)
 	ones = rep(NA, sample_size)
 	for(i in 1:sample_size) {
@@ -78,5 +73,14 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	}
 	plot(zeroes, ones, xlim=c(min(zeroes),max(zeroes)), ylim=c(min(ones),max(ones)), pch='.')
 	points(sum(y2==0), sum(y2==1), col="red")
+
+	if(!is.null(poisson_fitting_mean)) {
+		# Given Poisson fitting mean then show that if it is a good fit for data group 1.
+		plot(0:max(y1)+0.2, dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
+		points(table(y1)/n2)
+		# Given Poisson fitting mean then show that if it is a good fit for data group 2.
+		plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
+		points(table(y2)/n2)
+	}
 }
 
