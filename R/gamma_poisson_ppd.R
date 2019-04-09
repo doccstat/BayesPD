@@ -67,12 +67,14 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	zeroes = rep(NA, sample_size)
 	ones = rep(NA, sample_size)
 	for(i in 1:sample_size) {
+		# Per data set sampled, we find the total number of y == 0 and y == 1 then draw the graph of all the samples.
 		y = rpois(218, theta2_posterior[i])
-		zeroes[i] = sum(y==0)
-		ones[i] = sum(y==1)
+		zeroes[i] = sum(y == 0)
+		ones[i] = sum(y == 1)
 	}
+	# Check if the given data is an outlier to see if Poisson model is a proper model to use.
 	plot(zeroes, ones, xlim=c(min(zeroes),max(zeroes)), ylim=c(min(ones),max(ones)), pch='.')
-	points(sum(y2==0), sum(y2==1), col="red")
+	points(sum(y2 == 0), sum(y2 == 1), col="red")
 
 	if(!is.null(poisson_fitting_mean)) {
 		# Given Poisson fitting mean then show that if it is a good fit for data group 1.
