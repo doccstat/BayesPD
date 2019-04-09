@@ -31,16 +31,23 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		stop("Error: y2 should be a vector!")
 	}
 	if(using_MCMC) {
+		# Sampling from the prior distribution.
 		theta1 <- rgamma(sample_size, gamma_a1, gamma_b1)
+		# MCMC of the posterior predictive of Poisson distribution
 		y_tilde1 <- rpois(sample_size, theta1)
+		# Sampling from the prior distribution.
 		theta2 <- rgamma(sample_size, gamma_a2, gamma_b2)
+		# MCMC of the posterior predictive of Poisson distribution
 		y_tilde2 <- rpois(sample_size, theta2)
 	} else {
 		n1 <- length(y1)
+		# Since the posterior predictive distribution of a Poisson model with Gamma prior is Negative Binomial distribution, only need to compute the two parameters of the Negative Binomial distribution.
+		
 		p1 <- (gamma_b1 + n1) / (gamma_b1 + n1 + 1)
 		n2 <- length(y2)
 		p2 <- (gamma_b2 + n2) / (gamma_b2 + n2 + 1)
 
+		# Sampling from the Negative Binomial posterior predictive distribution.
 		y_tilde1 <- rnbinom(sample_size, sum(y1) + gamma_a1, p1)
 		y_tilde2 <- rnbinom(sample_size, sum(y2) + gamma_a2, p2)
 	}
@@ -48,6 +55,7 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
 	plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
 
+	# Parameter theta in a Poisson model given Gamma prior is again Gamma distribution.
 	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
 	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
 
