@@ -9,7 +9,6 @@
 #' @param y2 Given data of the Possion distribution with gamma prior for the parameter theta2.
 #' @param confidence_interval Confidence interval to be calculated.
 #' @param using_MCMC Whether to use MCMC to sampling the posterior predictive distribution.
-#' @param plot whether to plot the parameter samplings.
 #'
 #' @return Sampling of the posterior predictive distribution.
 #' @export
@@ -33,10 +32,8 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		y_tilde2 <- rnbinom(sample_size, sum(y2) + gamma_a2, p2)
 	}
 
-	if(plot) {
-		plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
-		plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
-	}
+	plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
+	plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
 
 	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
 	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
