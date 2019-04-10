@@ -64,6 +64,9 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	# MCMC for posterior predictive
 	y_tilde.1 <- rnorm(sample_size, theta.1, sqrt(sigma_square.1))
 
+	if(is.null(y.2)) {
+		return(list(theta_bar.1 = theta_bar.1, confidence_interval_theta.1 = confidence_interval_theta.1, sigma_bar.1 = sigma_bar.1, confidence_interval_sigma_bar.1 = confidence_interval_sigma_bar.1, y_tilde.1 = y_tilde.1))
+	}
 
 	# The mean of the second group of data
 	y_bar.2 <- mean(y.2)
@@ -96,6 +99,9 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	# MCMC for posterior predictive
 	y_tilde.2 <- rnorm(sample_size, theta.2, sqrt(sigma_square.2))
 
+	if(is.null(y.3)) {
+		return(list(inference.1 = list(theta_bar.1 = theta_bar.1, confidence_interval_theta.1 = confidence_interval_theta.1, sigma_bar.1 = sigma_bar.1, confidence_interval_sigma_bar.1 = confidence_interval_sigma_bar.1, y_tilde.1 = y_tilde.1), inference.2 = list(theta_bar.2 = theta_bar.2, confidence_interval_theta.2 = confidence_interval_theta.2, sigma_bar.2 = sigma_bar.2, confidence_interval_sigma_bar.2 = confidence_interval_sigma_bar.2, y_tilde.2 = y_tilde.2)))
+	}
 
 	# The mean of the third group of data
 	y_bar.3 <- mean(y.3)
@@ -146,4 +152,6 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	theta_biggest.1 <- mean(theta.1 > theta.2 & theta.1 > theta.3)
 	y_tilde_biggest.1 <- mean(y_tilde.1 > y_tilde.2 & y_tilde.1 > y_tilde.3)
 
+	return(list(inference.1 = list(theta_bar.1 = theta_bar.1, confidence_interval_theta.1 = confidence_interval_theta.1, sigma_bar.1 = sigma_bar.1, confidence_interval_sigma_bar.1 = confidence_interval_sigma_bar.1, y_tilde.1 = y_tilde.1), inference.2 = list(theta_bar.2 = theta_bar.2, confidence_interval_theta.2 = confidence_interval_theta.2, sigma_bar.2 = sigma_bar.2, confidence_interval_sigma_bar.2 = confidence_interval_sigma_bar.2, y_tilde.2 = y_tilde.2), inference.3 = list(theta_bar.3 = theta_bar.3, confidence_interval_theta.3 = confidence_interval_theta.3, sigma_bar.3 = sigma_bar.3, confidence_interval_sigma_bar.3 = confidence_interval_sigma_bar.3, y_tilde.3 = y_tilde.3), theta_smaller.1.2.3 = theta_smaller.1.2.3, theta_smaller.1.3.2 = theta_smaller.1.3.2, theta_smaller.2.1.3 = theta_smaller.2.1.3, theta_smaller.2.3.1 = theta_smaller.2.3.1, theta_smaller.3.1.2 = theta_smaller.3.1.2, theta_smaller.3.2.1 = theta_smaller.3.2.1, y_tilde_smaller.1.2.3 = y_tilde_smaller.1.2.3, y_tilde_smaller.1.3.2 = y_tilde_smaller.1.3.2, y_tilde_smaller.2.1.3 = y_tilde_smaller.2.1.3, y_tilde_smaller.2.3.1 = y_tilde_smaller.2.3.1, y_tilde_smaller.3.1.2 = y_tilde_smaller.3.1.2, y_tilde_smaller.3.2.1 = y_tilde_smaller.3.2.1, theta_biggest.1 = theta_biggest.1, y_tilde_biggest.1 = y_tilde_biggest.1))
 
+}
