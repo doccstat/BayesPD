@@ -43,17 +43,22 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	length.1 <- length(y.1)
 	# Compute kappa_n
 	kappa_n.1 <- kappa_0 + length.1
+	# Compute mu_n
 	mu_n.1 <- (kappa_0 * mu_0 + length.1 * y_bar.1) / kappa_n.1
+	# Compute nu_n
 	nu_n.1 <- nu_0 + length.1
+	# Compute sigma_n^2
 	sigma_n_square.1 <- (1 / nu_n.1) * (nu_0 * sigma_0_sequare + (length.1 - 1) * y_var.1 + ((kappa_0 * length.1) / kappa_n.1) * (y_bar.1 - mu_0)^2)
 	# sampling from the posterior distribution
 	sigma_square_inverse.1 <- rgamma(sample_size, nu_n.1 / 2, nu_n.1*sigma_n_square.1 / 2)
 	sigma_square.1 <- 1 / sigma_square_inverse.1
 	theta.1 <- rnorm(sample_size, mu_n.1, sqrt(sigma_square.1 / kappa_n.1))
 
+	# Mean of the posterior inference of theta
 	theta_bar.1 <- mean(theta.1)
 	confidence_interval_theta.1 <- quantile(theta.1, confidence_interval)
 
+	# Mean of the posterior inference of sigma
 	sigma_bar.1 <- mean(sqrt(sigma_square.1))
 	confidence_interval_sigma_bar.1 <- quantile(sqrt(sigma_square.1), confidence_interval)
 	# MCMC for posterior predictive
@@ -68,18 +73,24 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_sd.2 <- sd(y.2)
 	# The number of data in y.2
 	length.2 <- length(y.2)
+	# Compute kappa_n
 	kappa_n.2 <- kappa_0 + length.2
+	# Compute mu_n
 	mu_n.2 <- (kappa_0 * mu_0 + length.2 * y_bar.2) / kappa_n.2
+	# Compute nu_n
 	nu_n.2 <- nu_0 + length.2
+	# Compute sigma_n^2
 	sigma_n_square.2 <- (1 / nu_n.2) * (nu_0 * sigma_0_sequare + (length.2 - 1) * y_var.2 + ((kappa_0 * length.2) / kappa_n.2) * (y_bar.2 - mu_0)^2)
 	# sampling from the posterior distribution
 	sigma_square_inverse.2 <- rgamma(sample_size, nu_n.2 / 2, nu_n.2*sigma_n_square.2 / 2)
 	sigma_square.2 <- 1 / sigma_square_inverse.2
 	theta.2 <- rnorm(sample_size, mu_n.2, sqrt(sigma_square.2 / kappa_n.2))
 
+	# Mean of the posterior inference of theta
 	theta_bar.2 <- mean(theta.2)
 	confidence_interval_theta.2 <- quantile(theta.2, confidence_interval)
 
+	# Mean of the posterior inference of sigma
 	sigma_bar.2 <- mean(sqrt(sigma_square.2))
 	confidence_interval_sigma_bar.2 <- quantile(sqrt(sigma_square.2), confidence_interval)
 	# MCMC for posterior predictive
@@ -94,18 +105,24 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_sd.3 <- sd(y.3)
 	# The number of data in y.3
 	length.3 <- length(y.3)
+	# Compute kappa_n
 	kappa_n.3 <- kappa_0 + length.3
+	# Compute mu_n
 	mu_n.3 <- (kappa_0 * mu_0 + length.3 * y_bar.3) / kappa_n.3
+	# Compute nu_n
 	nu_n.3 <- nu_0 + length.3
+	# Compute sigma_n^2
 	sigma_n_square.3 <- (1 / nu_n.3) * (nu_0 * sigma_0_sequare + (length.3 - 1) * y_var.3 + ((kappa_0 * length.3) / kappa_n.3) * (y_bar.3 - mu_0)^2)
 	# sampling from the posterior distribution
 	sigma_square_inverse.3 <- rgamma(sample_size, nu_n.3 / 2, nu_n.3*sigma_n_square.3 / 2)
 	sigma_square.3 <- 1 / sigma_square_inverse.3
 	theta.3 <- rnorm(sample_size, mu_n.3, sqrt(sigma_square.3 / kappa_n.3))
 
+	# Mean of the posterior inference of theta
 	theta_bar.3 <- mean(theta.3)
 	confidence_interval_theta.3 <- quantile(theta.3, confidence_interval)
 
+	# Mean of the posterior inference of sigma
 	sigma_bar.3 <- mean(sqrt(sigma_square.3))
 	confidence_interval_sigma_bar.3 <- quantile(sqrt(sigma_square.3), confidence_interval)
 	# MCMC for posterior predictive
@@ -126,5 +143,7 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_tilde_smaller.3.2.1 <- mean(y_tilde.3 < y_tilde.2 & y_tilde.2 < y_tilde.1)
 
 
+	theta_biggest.1 <- mean(theta.1 > theta.2 & theta.1 > theta.3)
+	y_tilde_biggest.1 <- mean(y_tilde.1 > y_tilde.2 & y_tilde.1 > y_tilde.3)
 
 
