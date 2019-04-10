@@ -34,12 +34,14 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	}
 
 	# The mean of the first group of data
-	y_bar.1 <- mean(y_1)
+	y_bar.1 <- mean(y.1)
 	# The variance of the first group of data
-	y_var.1 <- var(y_1)
+	y_var.1 <- var(y.1)
 	# The standard deviation of the first group of data
-	y_sd.1 <- sd(y_1)
-	length.1 <- length(y_1)
+	y_sd.1 <- sd(y.1)
+	# The number of data in y.1
+	length.1 <- length(y.1)
+	# Compute kappa_n
 	kappa_n.1 <- kappa_0 + length.1
 	mu_n.1 <- (kappa_0 * mu_0 + length.1 * y_bar.1) / kappa_n.1
 	nu_n.1 <- nu_0 + length.1
@@ -58,10 +60,14 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_tilde.1 <- rnorm(sample_size, theta.1, sqrt(sigma_square.1))
 
 
-	y_bar.2 <- mean(y_2)
-	y_var.2 <- var(y_2)
-	y_sd.2 <- sd(y_2)
-	length.2 <- length(y_2)
+	# The mean of the second group of data
+	y_bar.2 <- mean(y.2)
+	# The variance of the second group of data
+	y_var.2 <- var(y.2)
+	# The standard deviation of the second group of data
+	y_sd.2 <- sd(y.2)
+	# The number of data in y.2
+	length.2 <- length(y.2)
 	kappa_n.2 <- kappa_0 + length.2
 	mu_n.2 <- (kappa_0 * mu_0 + length.2 * y_bar.2) / kappa_n.2
 	nu_n.2 <- nu_0 + length.2
@@ -80,10 +86,14 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	y_tilde.2 <- rnorm(sample_size, theta.2, sqrt(sigma_square.2))
 
 
-	y_bar.3 <- mean(y_3)
-	y_var.3 <- var(y_3)
-	y_sd.3 <- sd(y_3)
-	length.3 <- length(y_3)
+	# The mean of the third group of data
+	y_bar.3 <- mean(y.3)
+	# The variance of the third group of data
+	y_var.3 <- var(y.3)
+	# The standard deviation of the third group of data
+	y_sd.3 <- sd(y.3)
+	# The number of data in y.3
+	length.3 <- length(y.3)
 	kappa_n.3 <- kappa_0 + length.3
 	mu_n.3 <- (kappa_0 * mu_0 + length.3 * y_bar.3) / kappa_n.3
 	nu_n.3 <- nu_0 + length.3
@@ -101,22 +111,20 @@ normal_gamma_conjugate_family <- function(sample_size, mu_0, sigma_0_sequare, ka
 	# MCMC for posterior predictive
 	y_tilde.3 <- rnorm(sample_size, theta.3, sqrt(sigma_square.3))
 
+	theta_smaller.1.2.3 <- mean(theta.1 < theta.2 & theta.2 < theta.3)
+	theta_smaller.1.3.2 <- mean(theta.1 < theta.3 & theta.3 < theta.2)
+	theta_smaller.2.1.3 <- mean(theta.2 < theta.1 & theta.1 < theta.3)
+	theta_smaller.2.3.1 <- mean(theta.2 < theta.3 & theta.3 < theta.1)
+	theta_smaller.3.1.2 <- mean(theta.3 < theta.1 & theta.1 < theta.2)
+	theta_smaller.3.2.1 <- mean(theta.3 < theta.2 & theta.2 < theta.1)
 
-	mean(theta.1 < theta.2 & theta.2 < theta.3)
-	mean(theta.1 < theta.3 & theta.3 < theta.2)
-	mean(theta.2 < theta.1 & theta.1 < theta.3)
-	mean(theta.2 < theta.3 & theta.3 < theta.1)
-	mean(theta.3 < theta.1 & theta.1 < theta.2)
-	mean(theta.3 < theta.2 & theta.2 < theta.1)
-
-	mean(ypred.1 < ypred.2 & ypred.2 < ypred.3)
-	mean(ypred.1 < ypred.3 & ypred.3 < ypred.2)
-	mean(ypred.2 < ypred.1 & ypred.1 < ypred.3)
-	mean(ypred.2 < ypred.3 & ypred.3 < ypred.1)
-	mean(ypred.3 < ypred.1 & ypred.1 < ypred.2)
-	mean(ypred.3 < ypred.2 & ypred.2 < ypred.1)
+	y_tilde_smaller.1.2.3 <- mean(y_tilde.1 < y_tilde.2 & y_tilde.2 < y_tilde.3)
+	y_tilde_smaller.1.3.2 <- mean(y_tilde.1 < y_tilde.3 & y_tilde.3 < y_tilde.2)
+	y_tilde_smaller.2.1.3 <- mean(y_tilde.2 < y_tilde.1 & y_tilde.1 < y_tilde.3)
+	y_tilde_smaller.2.3.1 <- mean(y_tilde.2 < y_tilde.3 & y_tilde.3 < y_tilde.1)
+	y_tilde_smaller.3.1.2 <- mean(y_tilde.3 < y_tilde.1 & y_tilde.1 < y_tilde.2)
+	y_tilde_smaller.3.2.1 <- mean(y_tilde.3 < y_tilde.2 & y_tilde.2 < y_tilde.1)
 
 
-	mean(theta.1 > theta.2 & theta.1 > theta.3)
-	mean(ypred.1 > ypred.2 & ypred.1 > ypred.3)
-}
+
+
