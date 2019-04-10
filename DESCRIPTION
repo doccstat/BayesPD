@@ -1,6 +1,6 @@
 Package: BayesPD
 Title: Bayesian Methods problem driven
-Version: 0.0.0.9001
+Version: 0.3.0.0
 Authors@R: 
     person(given = "Xingchi",
            family = "Li",
