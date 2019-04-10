@@ -5,7 +5,8 @@
 \title{Title Univariate normal distribution with normal-gamma conjugate distribution}
 \usage{
 normal_gamma_conjugate_family(sample_size, mu_0, sigma_0_sequare, kappa_0,
-  nu_0, y_1, y_2, y_3, confidence_interval)
+  nu_0, y.1, y.2 = NULL, y.3 = NULL, confidence_interval = c(0.025,
+  0.975))
 }
 \arguments{
 \item{sample_size}{How many samples to produce.}
@@ -18,11 +19,11 @@ normal_gamma_conjugate_family(sample_size, mu_0, sigma_0_sequare, kappa_0,
 
 \item{nu_0}{The number of samples of prior observations.}
 
-\item{y_1}{Data set number 1.}
+\item{y.1}{Data set number 1.}
 
-\item{y_2}{Data set number 2.}
+\item{y.2}{Data set number 2.}
 
-\item{y_3}{Data set number 3.}
+\item{y.3}{Data set number 3.}
 
 \item{confidence_interval}{Confidence interval to be calculated.}
 }
@@ -33,5 +34,5 @@ The comparison of three data sets.
 Title Univariate normal distribution with normal-gamma conjugate distribution
 }
 \examples{
-normal_gamma_conjugate_family(sample_size = 10000, mu_0 = 5, sigma_0_sequare = 4, kappa_0 = 1, nu_0 = 2, y_1 = c(2.11,9.75,13.88,11.3,8.93,15.66,16.38,4.54,8.86,11.94,12.47,11.11,11.65,14.53,9.61,7.38,3.34,9.06,9.45,5.98,7.44,8.5,1.55,11.45,9.73), y_2 = c(0.29,1.13,6.52,11.72,6.54,5.63,14.59,11.74,9.12,9.43,10.64,12.28,9.5,0.63,15.35,5.31,8.49,3.04,3.77,6.22,2.14,6.58,1.11), y_3 = c(4.33,7.77,4.15,5.64,7.69,5.04,10.01,13.43,13.63,9.9,5.72,5.16,4.33,12.9,11.27,6.05,0.95,6.02,12.22,12.85), confidence_interval = c(0.025, 0.975))
+normal_gamma_conjugate_family(sample_size = 10000, mu_0 = 5, sigma_0_sequare = 4, kappa_0 = 1, nu_0 = 2, y.1 = c(2.11,9.75,13.88,11.3,8.93,15.66,16.38,4.54,8.86,11.94,12.47,11.11,11.65,14.53,9.61,7.38,3.34,9.06,9.45,5.98,7.44,8.5,1.55,11.45,9.73), y.2 = c(0.29,1.13,6.52,11.72,6.54,5.63,14.59,11.74,9.12,9.43,10.64,12.28,9.5,0.63,15.35,5.31,8.49,3.04,3.77,6.22,2.14,6.58,1.11), y.3 = c(4.33,7.77,4.15,5.64,7.69,5.04,10.01,13.43,13.63,9.9,5.72,5.16,4.33,12.9,11.27,6.05,0.95,6.02,12.22,12.85), confidence_interval = c(0.025, 0.975))
 }
