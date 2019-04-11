@@ -11,13 +11,27 @@
 #' @return The probability vector or value. If the variables supplied consists of non-positive numbers, the program will ignore that pair of alpha and beta at the same time.
 #' @export
 #'
-#' @examples beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21)
-#' beta_sample_comparison(sample_size = 6000, beta_a1 = c(58, 58), beta_b1 = c(44, 50), beta_a2 = 31, beta_b2 = 21)
-#' beta_sample_comparison(sample_size = 7000, beta_a1 = 58, beta_b1 = 44, beta_a2 = c(31, 31), beta_b2 = c(21, 30))
-#' beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE)
-#' beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE, plot = TRUE)
-#' beta_sample_comparison(sample_size = 9000, beta_a1 = 50:60, beta_b1 = 40:50, beta_a2 = 31, beta_b2 = 21, plot = TRUE)
-#' beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, beta_a2 = 30:40, beta_b2 = 20:30, plot = TRUE)
+#' @examples 
+#' beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, 
+#' beta_a2 = 31, beta_b2 = 21)
+#'
+#' beta_sample_comparison(sample_size = 6000, beta_a1 = c(58, 58), beta_b1 = c(44, 50), 
+#' beta_a2 = 31, beta_b2 = 21)
+#'
+#' beta_sample_comparison(sample_size = 7000, beta_a1 = 58, beta_b1 = 44, 
+#' beta_a2 = c(31, 31), beta_b2 = c(21, 30))
+#'
+#' beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, 
+#' beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE)
+#'
+#' beta_sample_comparison(sample_size = 8000, beta_a1 = 58, beta_b1 = 44, 
+#' beta_a2 = 31, beta_b2 = 21, theta1_smaller_than_theta2 = FALSE, plot = TRUE)
+#'
+#' beta_sample_comparison(sample_size = 9000, beta_a1 = 50:60, beta_b1 = 40:50, 
+#' beta_a2 = 31, beta_b2 = 21, plot = TRUE)
+#'
+#' beta_sample_comparison(sample_size = 5000, beta_a1 = 58, beta_b1 = 44, 
+#' beta_a2 = 30:40, beta_b2 = 20:30, plot = TRUE)
 beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_b2, theta1_smaller_than_theta2 = TRUE, plot = FALSE) {
 
 	if(sample_size %% 1 != 0 || sample_size <= 0) {

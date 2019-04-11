@@ -31,5 +31,7 @@ The probability vector or value
 Poisson model with gamma prior, compare the two parameters
 }
 \examples{
-posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
+posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, 
+gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), 
+tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
 }

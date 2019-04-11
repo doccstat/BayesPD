@@ -19,11 +19,24 @@ sensitivity_analysis(sample_size, y_bar.1, standard_deviation.1, y_bar.2,
 
 \item{standard_deviation.2}{Standard deviation of the second group of data.}
 
-\item{nu_0}{}
+\item{mu_0}{Parameter.}
+
+\item{sigma_0_square}{Parameter.}
+
+\item{n}{Parameter.}
+
+\item{kappa_0}{Parameter.}
+
+\item{nu_0}{Parameter.}
+}
+\value{
+The sensitivity analysis.
 }
 \description{
 Title Analyze the effect of prior data on the model
 }
 \examples{
-sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32)) # sigma_0_square = 4?
+sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, 
+y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, 
+n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32)) # sigma_0_square = 4?
 }

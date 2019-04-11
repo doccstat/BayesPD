@@ -11,7 +11,10 @@
 #' @return The probability vector or value
 #' @export
 #'
-#' @examples posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
+#' @examples 
+#' posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, 
+#' gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), 
+#' tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
 posterior_predictive_sample_comparison <- function(sample_size = sample_size, gamma_a1 = gamma_a1, gamma_b1 = gamma_b1, gamma_a2 = gamma_a2, gamma_b2 = gamma_b2, tildeya_smaller_than_tildeyb = TRUE, plot = FALSE) {
 
 	if(sample_size %% 1 != 0 || sample_size <= 0) {
