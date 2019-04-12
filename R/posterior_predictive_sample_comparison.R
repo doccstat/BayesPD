@@ -21,15 +21,25 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		stop("Error: sample size should be positive integer!")
 	}
 
-	if(is.vector(gamma_a1) && length(gamma_a1) > 1) {
-		if(!is.numeric(gamma_a2) || !is.numeric(gamma_b2)) {
+	n <- 1
+
+	if(vector_check(gamma_a1, 1) && vector_check(gamma_b1, 1) && vector_check(gamma_a2, 1) && vector_check(gamma_b2, 1)) {
+		if(tildeya_smaller_than_tildeyb) {
+			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) < stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
+		} else {
+			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) > stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
+		}
+	}
+
+	if(vector_check(gamma_a1)) {
+		if(vector_check(gamma_a2) || vector_check(gamma_b2)) {
 			stop("Error: gamma_1 and gamma_2 can not be vectors at the same time!")
 		}
 		if(gamma_a2 <= 0 || gamma_b2 <= 0) {
 			stop("Error: gamma_a2 and gamma_b2 should be positive!")
 		}
-		n <- length(gamma_a1)
-		if(!is.vector(gamma_b1) || length(gamma_b1) != n) {
+		
+		if(!vector_check(gamma_b1, length(gamma_a1))) {
 			stop("Error: the dimensions of gamma_a1 and gamma_b1 aren't the same!")
 		}
 		theta2 <- stats::rgamma(sample_size, gamma_a2, gamma_b2)
@@ -50,15 +60,15 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		}
 	}
 
-	if(is.vector(gamma_a2) && length(gamma_a2) > 1) {
-		if(!is.numeric(gamma_a1) || !is.numeric(gamma_b1)) {
+	if(vector_check(gamma_a2)) {
+		if(vector_check(gamma_a1) || vector_check(gamma_b1)) {
 			stop("Error: gamma_1 and gamma_2 can not be vectors at the same time!")
 		}
 		if(gamma_a1 <= 0 || gamma_b1 <= 0) {
 			stop("Error: gamma_a1 and gamma_b1 should be positive!")
 		}
-		n <- length(gamma_a2)
-		if(!is.vector(gamma_b2) || length(gamma_b2) != n) {
+		
+		if(!vector_check(gamma_b2, length(gamma_a2))) {
 			stop("Error: the dimensions of gamma_a2 and gamma_b2 aren't the same!")
 		}
 		theta1 <- stats::rgamma(sample_size, gamma_a1, gamma_b1)
@@ -78,16 +88,7 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 			}
 		}
 	}
-
-	if(length(gamma_a1) == 1 && length(gamma_b1) == 1 && length(gamma_a2) == 1 && length(gamma_b2) == 1) {
-		n <- 1
-		if(tildeya_smaller_than_tildeyb) {
-			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) < stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
-		} else {
-			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) > stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
-		}
-	}
-
+	
 	if(plot) {
 		if(n == 1) {
 			writeLines("Warning: Whats the point of plotting one single point?")
