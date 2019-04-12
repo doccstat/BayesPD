@@ -67,8 +67,8 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		y_tilde2 <- stats::rnbinom(sample_size, sum(y2) + gamma_a2, p2)
 	}
 
-	plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
-	plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
+	graphics::plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
+	graphics::plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
 
 	# Parameter theta in a Poisson model given Gamma prior is again Gamma distribution.
 	theta1_posterior <- stats::rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
@@ -77,8 +77,10 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	if(!is.null(poisson_fitting_mean)) {
 		# Given Poisson fitting mean then show that if it is a good fit for data group 1.
 		graphics::plot(0:max(y1)+0.2, stats::dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
+		graphics::points(table(y1)/n2)
 		# Given Poisson fitting mean then show that if it is a good fit for data group 2.
 		graphics::plot(0:max(y2)+0.2, stats::dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
+		graphics::points(table(y2)/n2)
 	}
 
 	# sampling data then check 
@@ -91,8 +93,8 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		ones[i] = sum(y == 1)
 	}
 	# Check if the given data is an outlier to see if Poisson model is a proper model to use.
-	plot(zeroes, ones, xlim=c(min(zeroes),max(zeroes)), ylim=c(min(ones),max(ones)), pch='.')
-	points(sum(y2 == 0), sum(y2 == 1), col="red")
+	graphics::plot(zeroes, ones, xlim=c(min(zeroes),max(zeroes)), ylim=c(min(ones),max(ones)), pch='.')
+	graphics::points(sum(y2 == 0), sum(y2 == 1), col="red")
 
 	if(!is.null(confidence_interval)) {
 		if(!vector_check(confidence_interval, 2) || confidence_interval[1] >= confidence_interval[2] || confidence_interval[1] < 0 || confidence_interval[2] > 1) {
