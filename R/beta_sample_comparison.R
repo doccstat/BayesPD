@@ -59,6 +59,7 @@ beta_sample_comparison <- function(sample_size, beta_a1, beta_b1, beta_a2, beta_
 		if(!vector_check(beta_b1, length(beta_a1))) {
 			stop("Error: the dimensions of beta_a1 and beta_b1 aren't the same!")
 		}
+		# Remove all invalid pairs.
 		beta_b1 <- beta_b1[beta_a1 > 0]
 		beta_a1 <- beta_a1[beta_a1 > 0]
 		beta_a1 <- beta_a1[beta_b1 > 0]

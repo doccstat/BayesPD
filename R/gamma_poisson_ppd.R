@@ -50,37 +50,35 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 
 	if(using_MCMC) {
 		# Sampling from the prior distribution.
-		theta1 <- rgamma(sample_size, gamma_a1, gamma_b1)
+		theta1 <- stats::rgamma(sample_size, gamma_a1, gamma_b1)
 		# MCMC of the posterior predictive of Poisson distribution
-		y_tilde1 <- rpois(sample_size, theta1)
+		y_tilde1 <- stats::rpois(sample_size, theta1)
 		# Sampling from the prior distribution.
-		theta2 <- rgamma(sample_size, gamma_a2, gamma_b2)
+		theta2 <- stats::rgamma(sample_size, gamma_a2, gamma_b2)
 		# MCMC of the posterior predictive of Poisson distribution
-		y_tilde2 <- rpois(sample_size, theta2)
+		y_tilde2 <- stats::rpois(sample_size, theta2)
 	} else {
 		# Since the posterior predictive distribution of a Poisson model with Gamma prior is Negative Binomial distribution, only need to compute the two parameters of the Negative Binomial distribution.
 		
 		p1 <- (gamma_b1 + n1) / (gamma_b1 + n1 + 1)
 		p2 <- (gamma_b2 + n2) / (gamma_b2 + n2 + 1)
 		# Sampling from the Negative Binomial posterior predictive distribution.
-		y_tilde1 <- rnbinom(sample_size, sum(y1) + gamma_a1, p1)
-		y_tilde2 <- rnbinom(sample_size, sum(y2) + gamma_a2, p2)
+		y_tilde1 <- stats::rnbinom(sample_size, sum(y1) + gamma_a1, p1)
+		y_tilde2 <- stats::rnbinom(sample_size, sum(y2) + gamma_a2, p2)
 	}
 
 	plot(table(y_tilde1), type = "h", lwd = 1, main = "y_tilde1")
 	plot(table(y_tilde2), type = "h", lwd = 1, main = "y_tilde2")
 
 	# Parameter theta in a Poisson model given Gamma prior is again Gamma distribution.
-	theta1_posterior <- rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
-	theta2_posterior <- rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
+	theta1_posterior <- stats::rgamma(sample_size, sum(y1) + gamma_a1, n1 + gamma_b1)
+	theta2_posterior <- stats::rgamma(sample_size, sum(y2) + gamma_a2, n2 + gamma_b2)
 	
 	if(!is.null(poisson_fitting_mean)) {
 		# Given Poisson fitting mean then show that if it is a good fit for data group 1.
-		plot(0:max(y1)+0.2, dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
-		points(table(y1)/n2)
+		graphics::plot(0:max(y1)+0.2, stats::dpois(0:max(y1), poisson_fitting_mean), type="h", col="red")
 		# Given Poisson fitting mean then show that if it is a good fit for data group 2.
-		plot(0:max(y2)+0.2, dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
-		points(table(y2)/n2)
+		graphics::plot(0:max(y2)+0.2, stats::dpois(0:max(y2), poisson_fitting_mean), type="h", col="red")
 	}
 
 	# sampling data then check 
@@ -88,7 +86,7 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 	ones = rep(NA, sample_size)
 	for(i in 1:sample_size) {
 		# Per data set sampled, we find the total number of y == 0 and y == 1 then draw the graph of all the samples.
-		y = rpois(218, theta2_posterior[i])
+		y = stats::rpois(218, theta2_posterior[i])
 		zeroes[i] = sum(y == 0)
 		ones[i] = sum(y == 1)
 	}
@@ -100,8 +98,8 @@ gamma_poisson_ppd <- function(sample_size, gamma_a1, gamma_b1, y1, gamma_a2, gam
 		if(!vector_check(confidence_interval, 2) || confidence_interval[1] >= confidence_interval[2] || confidence_interval[1] < 0 || confidence_interval[2] > 1) {
 			stop("Error: Confidence interval is not a valid pair of percentages.")
 		}
-		theta2_minus_theta1_quantile <- quantile(theta2_posterior - theta1_posterior, confidence_interval)
-		y_tidle2_minus_ytilde1_quantile <- quantile(y_tilde2 - y_tilde1, confidence_interval)
+		theta2_minus_theta1_quantile <- stats::quantile(theta2_posterior - theta1_posterior, confidence_interval)
+		y_tidle2_minus_ytilde1_quantile <- stats::quantile(y_tilde2 - y_tilde1, confidence_interval)
 		return(list(theta2_minus_theta1_quantile = theta2_minus_theta1_quantile, y_tidle2_minus_ytilde1_quantile = y_tidle2_minus_ytilde1_quantile))
 	}
 	
