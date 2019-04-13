@@ -42,6 +42,16 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		if(!vector_check(gamma_b1, length(gamma_a1))) {
 			stop("Error: the dimensions of gamma_a1 and gamma_b1 aren't the same!")
 		}
+		# Remove all invalid pairs.
+		gamma_b1 <- gamma_b1[gamma_a1 > 0]
+		gamma_a1 <- gamma_a1[gamma_a1 > 0]
+		gamma_a1 <- gamma_a1[gamma_b1 > 0]
+		gamma_b1 <- gamma_b1[gamma_b1 > 0]
+		if(!vector_check(gamma_a1) && !vector_check(gamma_b1, 1)) {
+			stop("No valid pairs in the vector gamma_1.")
+		}
+
+		n <- length(gamma_a1)
 		theta2 <- stats::rgamma(sample_size, gamma_a2, gamma_b2)
 		tildeyb <- stats::rpois(sample_size, theta2)
 		probability <- rep(0, n)
@@ -71,6 +81,16 @@ posterior_predictive_sample_comparison <- function(sample_size = sample_size, ga
 		if(!vector_check(gamma_b2, length(gamma_a2))) {
 			stop("Error: the dimensions of gamma_a2 and gamma_b2 aren't the same!")
 		}
+
+		# Remove all invalid pairs.
+		gamma_b2 <- gamma_b2[gamma_a2 > 0]
+		gamma_a2 <- gamma_a2[gamma_a2 > 0]
+		gamma_a2 <- gamma_a2[gamma_b2 > 0]
+		gamma_b2 <- gamma_b2[gamma_b2 > 0]
+		if(!vector_check(gamma_a2) && !vector_check(gamma_b2, 1)) {
+			stop("No valid pairs in the vector gamma_2.")
+		}
+		n <- length(gamma_a2)
 		theta1 <- stats::rgamma(sample_size, gamma_a1, gamma_b1)
 		tildeya <- stats::rpois(sample_size, theta1)
 		probability <- rep(0, n)
