@@ -1,17 +1,19 @@
-#' Title
+#' Title Analyze the effect of prior data on the model
 #'
-#' @param sample_size
-#' @param y_bar.1
-#' @param standard_deviation.1
-#' @param y_bar.2
-#' @param standard_deviation.2
-#' @param mu_0
-#' @param sigma_0_square
-#' @param n
-#' @param kappa_0
-#' @param nu_0
+#' @param sample_size How many samples to produce.
+#' @param y_bar.1 Mean value of the first group of data.
+#' @param standard_deviation.1 Standard deviation of the first group of data.
+#' @param y_bar.2 Mean value of the second group of data.
+#' @param standard_deviation.2 Standard deviation of the second group of data.
+#' @param mu_0 Parameter.
+#' @param sigma_0_square Parameter.
+#' @param n Parameter.
+#' @param kappa_0 Parameter.
+#' @param nu_0 Parameter.
+#' @param theta.1_smaller_than_theta.2 How to make the comparison. If FALSE, compute theta1 > theta2.
+#' @param plot Whether to plot the figure showing the tendency of probability change.
 #'
-#' @return
+#' @return The sensitivity analysis.
 #' @export
 #'
 #' @examples sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32)) # sigma_0_square = 4?
