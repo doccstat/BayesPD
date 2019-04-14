@@ -28,6 +28,10 @@ sensitivity_analysis(sample_size, y_bar.1, standard_deviation.1, y_bar.2,
 \item{kappa_0}{Parameter.}
 
 \item{nu_0}{Parameter.}
+
+\item{theta.1_smaller_than_theta.2}{How to make the comparison. If FALSE, compute theta1 > theta2.}
+
+\item{plot}{Whether to plot the figure showing the tendency of probability change.}
 }
 \value{
 The sensitivity analysis.
