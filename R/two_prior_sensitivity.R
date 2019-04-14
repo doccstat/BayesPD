@@ -1,17 +1,18 @@
-#' Title
+#' Title Analysis the sensitivity of changing the parameters of Gamma distribution, based on the dependency of two Poisson distributions parameters.
 #'
-#' @return
+#' @param sample_size How many samples to produce.
+#' @param gamma_theta_a The first parameter of Gamma distribution of \eqn{\theta}.
+#' @param gamma_theta_b The second parameter of Gamma distribution of \eqn{\theta}.
+#' @param y.1 The first group of data.
+#' @param y.2 The second group of data.
+#' @param gamma_gamma_a The first parameter of Gamma distribution of \eqn{\gamma}.
+#' @param gamma_gamma_b The second parameter of Gamma distribution of \eqn{\gamma}.
+#'
+#' @return The expectation of the difference between parameters of Poisson distributions given the data.
 #' @export
 #'
 #' @examples
-#' two_prior_sensitivity(sample_size = 5000, theta.1 = 2, theta.2 = 1, 
-#' y.1 = c(1, 0, 0, 1, 2, 2, 1, 5, 2, 0, 0, 0, 0, 0, 0, 1),
-#' y.2 = c(2, 2, 1, 1, 2, 2, 1, 2, 1, 0, 2, 1, 1, 2, 0, 2, 2, 0, 2, 1, 0, 0, 3, 6, 1),
-#' gamma_a = 2^(seq(3, 7)), gamma_b = 2^(seq(3, 7)))
-two_prior_sensitivity <- function(sample_size, theta.1, theta.2, y.1, y.2, gamma_a, gamma_b) {
-
-	# y.1 <- c(1, 0, 0, 1, 2, 2, 1, 5, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 2, 1, 3, 2, 0, 0, 3, 0, 0, 0, 2, 1, 0, 2, 1, 0, 0, 1, 3, 0, 1, 1, 0, 2, 0, 0, 2, 2, 1, 3, 0, 0, 0, 1, 1)
-	# y.2 <- c(2, 2, 1, 1, 2, 2, 1, 2, 1, 0, 2, 1, 1, 2, 0, 2, 2, 0, 2, 1, 0, 0, 3, 6, 1, 6, 4, 0, 3, 2, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 4, 2, 1, 0, 0, 1, 0, 3, 2, 5, 0, 1, 1, 2, 1, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 2, 4, 1, 1, 1, 2, 0, 1, 1, 1, 1, 0, 2, 3, 2, 0, 2, 1, 3, 1, 3, 2, 2, 3, 2, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3, 3, 0, 1, 2, 2, 2, 0, 6, 0, 0, 0, 2, 0, 1, 1, 1, 3, 3, 2, 1, 1, 0, 1, 0, 0, 2, 0, 2, 0, 1, 0, 2, 0, 0, 2, 2, 4, 1, 2, 3, 2, 0, 0, 0, 1, 0, 0, 1, 5, 2, 1, 3, 2, 0, 2, 1, 1, 3, 0, 5, 0, 0, 2, 4, 3, 4, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 1, 1, 0, 2, 1, 3, 3, 2, 2, 0, 0, 2, 3, 2, 4, 3, 3, 4, 0, 3, 0, 1, 0, 1, 2, 3, 4, 1, 2, 6, 2, 1, 2, 2)
-
-
+#' two_prior_sensitivity(sample_size = 5000, gamma_theta_a = 2, gamma_theta_b = 1,
+#' y.1 = menchild30bach, y.2 = menchild30nobach,
+#' gamma_gamma_a = 2^(seq(3, 7)), gamma_gamma_b = 2^(seq(3, 7)))
 }
