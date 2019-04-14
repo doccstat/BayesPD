@@ -30,24 +30,25 @@ sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_b
 	probability <- rep(0,length(kappa_0))
 
 	for(i in 1:length(kappa_0)) {
-		# Compute posterior parameters
+		# Compute posterior parameter kappa_n
 		kappa_n <- kappa_0[i] + n
 		mu_n.1 <- (kappa_0[i] * mu_0 + n * y_bar.1) / kappa_n
 		nu_n <- nu_0[i] + n
 		sigma_n_square.1 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.1^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.1 - mu_0)^2)
 		# MCMC for posterior
-		sigma_square_inverse.1 <- rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.1 / 2)
+		sigma_square_inverse.1 <- stats::rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.1 / 2)
 		sigma_square.1 <-  1 / sigma_square_inverse.1
-		theta.1 <- rnorm(sample_size, mu_n.1, sqrt(sigma_square.1 / kappa_n))
-		# Compute posterior parameters
-		kappa_n <- kappa_0[i] + n
+		theta.1 <- stats::rnorm(sample_size, mu_n.1, sqrt(sigma_square.1 / kappa_n))
+
+		# Compute posterior parameter mu_n
 		mu_n.2 <- (kappa_0[i] * mu_0 + n * y_bar.2) / kappa_n
 		nu_n <- nu_0[i] + n
 		sigma_n_square.2 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.2^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.2 - mu_0)^2)
 		# MCMC for posterior
-		sigma_square_inverse.2 <- rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.2 / 2)
+		sigma_square_inverse.2 <- stats::rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.2 / 2)
 		sigma_square.2 <-  1 / sigma_square_inverse.2
-		theta.2 <- rnorm(sample_size, mu_n.2, sqrt(sigma_square.2 / kappa_n))
+		theta.2 <- stats::rnorm(sample_size, mu_n.2, sqrt(sigma_square.2 / kappa_n))
+
 		if(theta.1_smaller_than_theta.2) {
 			probability[i] <- mean(theta.1 < theta.2)
 		} else {
