@@ -37,8 +37,12 @@ sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_b
 	for(i in 1:length(kappa_0)) {
 		# Compute posterior parameter kappa_n
 		kappa_n <- kappa_0[i] + n
-		mu_n.1 <- (kappa_0[i] * mu_0 + n * y_bar.1) / kappa_n
+		# Compute posterior parameter nu_n
 		nu_n <- nu_0[i] + n
+
+		# Compute posterior parameter mu_n
+		mu_n.1 <- (kappa_0[i] * mu_0 + n * y_bar.1) / kappa_n
+		# Compute posterior parameter sigma_n^2
 		sigma_n_square.1 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.1^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.1 - mu_0)^2)
 		# MCMC for posterior
 		sigma_square_inverse.1 <- stats::rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.1 / 2)
@@ -47,7 +51,7 @@ sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_b
 
 		# Compute posterior parameter mu_n
 		mu_n.2 <- (kappa_0[i] * mu_0 + n * y_bar.2) / kappa_n
-		nu_n <- nu_0[i] + n
+		# Compute posterior parameter sigma_n^2
 		sigma_n_square.2 <- (1 / nu_n) * (nu_0[i] * sigma_0_square + (n - 1) * standard_deviation.2^2 + ((kappa_0[i] * n) / kappa_n) * (y_bar.2 - mu_0)^2)
 		# MCMC for posterior
 		sigma_square_inverse.2 <- stats::rgamma(sample_size, nu_n / 2, nu_n * sigma_n_square.2 / 2)
@@ -64,5 +68,7 @@ sensitivity_analysis <- function(sample_size, y_bar.1, standard_deviation.1, y_b
 	if(plot) {
 		plot(kappa_0, probability, main = "Sensitivity analysis", xlab = "kappa_0 = nu_0")
 	}
+	
+	return(probability)
 	
 }
