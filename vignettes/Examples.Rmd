@@ -24,7 +24,7 @@ In Bayesian Analysis, we sometimes need to compare the output of the beta distri
 
 There are two groups of parameters required, beta_1 and beta_2. Only one of them can be vectors of length bigger than 1. Since you are comparing the change of one group of parameters to another group of parameters, you can only change one at a time.
 
-```{r}
+```{r, results="hide"}
 beta_sample_comparison(sample_size = 9000, beta_a1 = 50:60, beta_b1 = 40:50, beta_a2 = 31, beta_b2 = 21, plot = TRUE)
 ```
 
@@ -34,7 +34,7 @@ The example shows that we have ten pairs of beta_1, and we want to know how the 
 
 We have two data sets. Assuming those are poisson models, we have gamma prior for the parameter of poisson models.
 
-```{r}
+```{r, results="hide"}
 gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), confidence_interval = c(0.025, 0.975), using_MCMC = FALSE, poisson_fitting_mean = 1.4)
 ```
 
@@ -42,6 +42,6 @@ Here the example shows that we have two data sets: y1 and y2. given priors for p
 
 Since we have sample_size theta2_posterior, then for each of them, we can sample 218 data to see if it matches the real data. One way to check is to see the number of 0 and number of 1, and draw the sample_size number of points in one figure then check the number of 0 and number of 1 in the original data.
 
-```{r}
+```{r, results="hide"}
 normal_gamma_conjugate_family(sample_size = 10000, mu_0 = 5, sigma_0_sequare = 4, kappa_0 = 1, nu_0 = 2, y.1 = c(2.11,9.75,13.88,11.3,8.93,15.66,16.38,4.54,8.86,11.94,12.47,11.11,11.65,14.53,9.61,7.38,3.34,9.06,9.45,5.98,7.44,8.5,1.55,11.45,9.73), y.2 = c(0.29,1.13,6.52,11.72,6.54,5.63,14.59,11.74,9.12,9.43,10.64,12.28,9.5,0.63,15.35,5.31,8.49,3.04,3.77,6.22,2.14,6.58,1.11), y.3 = c(4.33,7.77,4.15,5.64,7.69,5.04,10.01,13.43,13.63,9.9,5.72,5.16,4.33,12.9,11.27,6.05,0.95,6.02,12.22,12.85), confidence_interval = c(0.025, 0.975))
 ```
