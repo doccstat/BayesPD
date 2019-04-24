@@ -24,5 +24,7 @@ gibbs_effective <- function(sample_size, x, y, tau_beta_square, tau_c_square, co
 		# Since y consists only of 1s and 0s, we can combine them together in one equation.
 		z[1, j] <- y[j] * MCMCglmm::rtnorm(1, mean = beta*x[j], sd = 1, lower = c) + (1 - y[j]) * MCMCglmm::rtnorm(1, mean = beta*x[j], sd = 1, upper = c)
 	}
+	# Create a constant parameter to store to avoid redundant calculation
+	constant_parameter <- sum(x^2) + 1/tau_beta_square
 	
 }
