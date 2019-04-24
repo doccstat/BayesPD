@@ -44,4 +44,6 @@ gibbs_effective <- function(sample_size, x, y, tau_beta_square, tau_c_square, co
 	beta_confidence_interval <- stats::quantile(beta, confidence_interval)
 	probability <- length(which(beta[-1] > 0)) / sample_size
 	
+	# Use acf() on the last three variables to see the mixing.
+	return(list(beta_confidence_interval = beta_confidence_interval, probability = probability, beta = beta, c = c, z = z[-1, sample(1:data_size, 1)]))
 }
