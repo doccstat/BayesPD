@@ -26,5 +26,19 @@ gibbs_effective <- function(sample_size, x, y, tau_beta_square, tau_c_square, co
 	}
 	# Create a constant parameter to store to avoid redundant calculation
 	constant_parameter <- sum(x^2) + 1/tau_beta_square
+	beta <- c <- numeric(sample_size)
+	for(i in 1:sample_size) {
+		# Sampling beta
+		beta[i] <- stats::rnorm(1, mean = sum(z[i, ]*x)/constant_parameter, sd = sqrt(1/constant_parameter))
+		# Sampling c
+		c[i] <- MCMCglmm::rtnorm(1, mean = 0, sd = sqrt(tau_c_square), lower = max(z[i,which(y==0)]), upper = min(z[i,which(y==1)]))
+		# Sampling z and building a matrix of z
+		z.prop <- numeric(data_size)
+		for(j in 1:data_size) {
+			z.prop[j] <- y[j] * MCMCglmm::rtnorm(1, mean = beta[i] * x[j], sd = 1, lower = c[i]) + (1 - y[j]) * MCMCglmm::rtnorm(1, mean = beta[i] * x[j], sd = 1, upper = c[i])
+		}
+		# Form a matrix to store z.
+		z <- rbind(z, z.prop)
+	}
 	
 }
