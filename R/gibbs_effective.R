@@ -40,5 +40,8 @@ gibbs_effective <- function(sample_size, x, y, tau_beta_square, tau_c_square, co
 		# Form a matrix to store z.
 		z <- rbind(z, z.prop)
 	}
+
+	beta_confidence_interval <- stats::quantile(beta, confidence_interval)
+	probability <- length(which(beta[-1] > 0)) / sample_size
 	
 }
