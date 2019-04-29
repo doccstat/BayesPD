@@ -17,12 +17,14 @@
 #' tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
 posterior_predictive_sample_comparison <- function(sample_size = sample_size, gamma_a1 = gamma_a1, gamma_b1 = gamma_b1, gamma_a2 = gamma_a2, gamma_b2 = gamma_b2, tildeya_smaller_than_tildeyb = TRUE, plot = FALSE) {
 
+	# Sample size must be positive integer.
 	if(sample_size %% 1 != 0 || sample_size <= 0) {
 		stop("Error: sample size should be positive integer!")
 	}
 
 	n <- 1
 
+	# if every parameter is a real number, we don't need to set n again.
 	if(vector_check(gamma_a1, 1) && vector_check(gamma_b1, 1) && vector_check(gamma_a2, 1) && vector_check(gamma_b2, 1)) {
 		if(tildeya_smaller_than_tildeyb) {
 			probability <- mean(stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a1, gamma_b1)) < stats::rpois(sample_size, stats::rgamma(sample_size, gamma_a2, gamma_b2)))
