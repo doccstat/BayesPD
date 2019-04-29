@@ -20,4 +20,8 @@ two_prior_sensitivity <- function(sample_size, gamma_theta_a, gamma_theta_b, y.1
 	n.1 <- length(y.1)
 	n.2 <- length(y.2)
 	# Create a vector to reduce memory cost.
+
+	plot(gamma_gamma_a, expectation)
+
+	return(expectation)
 }
