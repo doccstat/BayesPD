@@ -20,6 +20,12 @@ two_prior_sensitivity <- function(sample_size, gamma_theta_a, gamma_theta_b, y.1
 	n.1 <- length(y.1)
 	n.2 <- length(y.2)
 	# Create a vector to reduce memory cost.
+	expectation <- numeric(length(gamma_gamma_a))
+	# Loop for each pair of the gamma parameters provided.
+	for (i in 1:length(expectation)) {
+		thetas <- gammas <- numeric(sample_size)
+		
+	}
 
 	plot(gamma_gamma_a, expectation)
 
