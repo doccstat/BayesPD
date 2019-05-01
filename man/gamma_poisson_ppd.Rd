@@ -37,15 +37,15 @@ Title Poisson model of parameter theta, given gamma prior and the data. Sampling
 }
 \examples{
 gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, 
-y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1), gamma_a2 = 2, gamma_b2 = 1, 
-y2 = c(2,2,1,1,2,2,1,2,2,2,0,0,2,0,0,1,1,6,2,1,2,2), using_MCMC = FALSE)
+y1 = menchild30bach, gamma_a2 = 2, gamma_b2 = 1, 
+y2 = menchild30nobach, using_MCMC = FALSE)
 
 gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, 
-y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1), gamma_a2 = 2, gamma_b2 = 1, 
-y2 = c(2,2,1,1,2,2,1,2,2,2,0,0,2,0,0,1,1,6,2,1,2,2), using_MCMC = TRUE)
+y1 = menchild30bach, gamma_a2 = 2, gamma_b2 = 1, 
+y2 = menchild30nobach, using_MCMC = TRUE)
 
 gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, 
-y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1), gamma_a2 = 2, gamma_b2 = 1, 
-y2 = c(2,2,1,1,2,2,1,2,2,2,0,0,2,0,0,1,1,6,2,1,2,2), confidence_interval = c(0.025, 0.975), 
+y1 = menchild30bach, gamma_a2 = 2, gamma_b2 = 1, 
+y2 = menchild30nobach, confidence_interval = c(0.025, 0.975), 
 using_MCMC = FALSE, poisson_fitting_mean = 1.4)
 }

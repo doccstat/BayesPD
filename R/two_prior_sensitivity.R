@@ -26,11 +26,11 @@ two_prior_sensitivity <- function(sample_size, gamma_theta_a, gamma_theta_b, y.1
 		thetas <- gammas <- numeric(sample_size)
 		
 		# Since the computation of theta is based on gamma, we need the initial value which is not in the vector, and we need to take it into consideration alone.
-		thetas[1] <- rgamma(1, sum(y.1 + y.2) + gamma_theta_a, n.1 + n.2 * mean(y.2)/mean(y.1) + gamma_theta_b)
+		thetas[1] <- rgamma(1, sum(y.1) + sum(y.2) + gamma_theta_a, n.1 + n.2 * mean(y.2)/mean(y.1) + gamma_theta_b)
 		gammas[1] <- rgamma(1, sum(y.2) + gamma_gamma_a[i], n.2 * thetas[1] + gamma_gamma_b[i])
 
 		for (j in 2:sample_size) {
-			thetas[j] <- rgamma(1, sum(y.1 + y.2) + gamma_theta_a, n.1 + n.2 * gammas[j-1] + gamma_theta_b)
+			thetas[j] <- rgamma(1, sum(y.1) + sum(y.2) + gamma_theta_a, n.1 + n.2 * gammas[j-1] + gamma_theta_b)
 			gammas[j] <- rgamma(1, sum(y.2) + gamma_gamma_a[i], n.2 * thetas[j] + gamma_gamma_b[i])
 		}
 

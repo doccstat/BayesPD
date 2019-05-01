@@ -35,7 +35,6 @@ Title Univariate normal distribution with normal-gamma conjugate distribution
 }
 \examples{
 normal_gamma_conjugate_family(sample_size = 10000, mu_0 = 5, sigma_0_sequare = 4, 
-kappa_0 = 1, nu_0 = 2, y.1 = c(2.11,3.34,9.06,9.45,5.98,7.44,8.5,1.55,11.45,9.73), 
-y.2 = c(9.43,10.64,12.28,9.5,0.63,15.35,5.31,8.49,3.04,3.77,6.22,2.14,6.58,1.11), 
-y.3 = c(4.33,7.77,4.15,12.9,11.27,12.22,12.85), confidence_interval = c(0.025, 0.975))
+kappa_0 = 1, nu_0 = 2, y.1 = school1, 
+y.2 = school2, y.3 = school3, confidence_interval = c(0.025, 0.975))
 }
