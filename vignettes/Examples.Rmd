@@ -59,4 +59,14 @@ And the 95% credible interval for $\tilde{Y}_B-\tilde{Y}_A$ is
 ```{r, dependson=-2}
 out$y_tidle2_minus_ytilde1_quantile
 ```
+
+## posterior_predictive_sample_comparison
+
+Given two Poisson models, the parameters have $gamma(237,20)$ prior distribution, and variable gamma prior distributions. Using MCMC sampling $5000$ samples, we can see the going of the probability that $\tilde{Y}_A>\tilde{Y}_B$ with the parameters for the second prior changing.
+
+```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4}
+out <- posterior_predictive_sample_comparison(sample_size = 5000, gamma_a1 = 237, gamma_b1 = 20, gamma_a2 = 12*(1:100)+113, gamma_b2 = 13+(1:100), tildeya_smaller_than_tildeyb = FALSE, plot = TRUE)
+```
+
+The output of the function is just the probability.
 ```
