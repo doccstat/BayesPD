@@ -22,17 +22,17 @@ knitr::opts_chunk$set(
 library(BayesPD)
 ```
 
-## beta_sample_comparison
+## beta_sample_comparison TODO
 
 In Bayesian Analysis, we sometimes need to compare the output of the beta distributions, so this function simplifies the process. All you need to do is supplied the sample size, and parameters for the beta distribution, and it will return the probability that the sample of one distribution is smaller than the other.
 
-There are two groups of parameters required, beta_1 and beta_2. Only one of them can be vectors of length bigger than 1. Since you are comparing the change of one group of parameters to another group of parameters, you can only change one at a time.
+There are two groups of parameters required, $beta(a_1,b_1)$ and $beta(a_2,b_2)$. Only one of them can be vectors of length bigger than 1.
 
 ```{r, results="hide"}
 beta_sample_comparison(sample_size = 9000, beta_a1 = 50:60, beta_b1 = 40:50, beta_a2 = 31, beta_b2 = 21, plot = TRUE)
 ```
 
-The example shows that we have ten pairs of beta_1, and we want to know how the output of beta_1 compare to the output of beta_2 with beta_1 changing.
+The example shows that we have ten pairs of $beta(a_1,b_1)$, and we want to know how the output of $beta(a_1,b_1)$ compare to the output of $beta(a_2,b_2)$ with $beta(a_1,b_1)$ changing.
 
 ## gamma_poisson_ppd
 
