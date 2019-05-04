@@ -141,4 +141,13 @@ Thirty-two students in a science classroom were randomly assigned to one of two 
 ```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4}
 sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32))
 ```
+
+## two_prior_sensitivity
+
+Given the data: number of children of men in their $30$s with and without bachelor's degrees, respectively. 
+
+We'll assume Poisson sampling models for the two groups and parameterize $\theta_A$ and $\theta_B$ as $\theta_A = \theta$, $\theta_B = \theta\times\gamma$. In this parameterization, $\gamma$ represents the relative rate $\theta_B/\theta_A$. Let $\theta\sim gamma(2, 1)$ and let $\gamma\sim gamma(a_\gamma, b_\gamma)$. Let $a_\gamma = b_\gamma \in \{8, 16, 32, 64, 128\}$. For each of these five values, run a Gibbs sampler of at least $5000$ iterations and we have the figure of $E[\theta_B-\theta_A\vert \boldsymbol{y}_A, \boldsymbol{y}_B]$.
+
+```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4}
+two_prior_sensitivity(sample_size = 5000, gamma_theta_a = 2, gamma_theta_b = 1, y.1 = menchild30bach, y.2 = menchild30nobach, gamma_gamma_a = 2^(seq(3, 7)), gamma_gamma_b = 2^(seq(3, 7)))
 ```
