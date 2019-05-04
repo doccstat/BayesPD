@@ -36,16 +36,27 @@ The example shows that we have ten pairs of $beta(a_1,b_1)$, and we want to know
 
 ## gamma_poisson_ppd
 
-We have two data sets. Assuming those are poisson models, we have gamma prior for the parameter of poisson models.
+Given the data: number of children of men in their $30$s with and without bachelor's degrees, respectively. 
 
-```{r, results="hide"}
-gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = c(1,0,0,1,2,2,1,5,2,0,0,0,0,0,0,1,1,1,0,0,0,1,1,2,1,3,2,0,0,3,0,0,0,2,1,0,2,1,0,0,1,3,0,1,1,0,2,0,0,2,2,1,3,0,0,0,1,1), gamma_a2 = 2, gamma_b2 = 1, y2 = c(2,2,1,1,2,2,1,2,1,0,2,1,1,2,0,2,2,0,2,1,0,0,3,6,1,6,4,0,3,2,0,1,0,0,0,3,0,0,0,0,0,1,0,4,2,1,0,0,1,0,3,2,5,0,1,1,2,1,2,1,2,0,0,0,2,1,0,2,0,2,4,1,1,1,2,0,1,1,1,1,0,2,3,2,0,2,1,3,1,3,2,2,3,2,0,0,0,1,0,0,0,1,2,0,3,3,0,1,2,2,2,0,6,0,0,0,2,0,1,1,1,3,3,2,1,1,0,1,0,0,2,0,2,0,1,0,2,0,0,2,2,4,1,2,3,2,0,0,0,1,0,0,1,5,2,1,3,2,0,2,1,1,3,0,5,0,0,2,4,3,4,0,0,0,0,0,0,2,2,0,0,2,0,0,1,1,0,2,1,3,3,2,2,0,0,2,3,2,4,3,3,4,0,3,0,1,0,1,2,3,4,1,2,6,2,1,2,2), confidence_interval = c(0.025, 0.975), using_MCMC = FALSE, poisson_fitting_mean = 1.4)
+Let $\theta_A$ and $\theta_B$ be the average of each group. Using a Poisson sampling model, a $gamma(2, 1)$ prior for each $\theta$ and the data, obtain $5000$ samples of $\tilde{Y}_A$ and $\tilde{Y}_B$ from the posterior predictive distribution of the two samples. We have the Monte Carlo approximations to these two posterior predictive distributions in the first two pictures.
+
+```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4, fig.width=3}
+out <- gamma_poisson_ppd(sample_size = 5000, gamma_a1 = 2, gamma_b1 = 1, y1 = menchild30bach, gamma_a2 = 2, gamma_b2 = 1, y2 = menchild30nobach, confidence_interval = c(0.025, 0.975), using_MCMC = TRUE, poisson_fitting_mean = 1.4)
 ```
 
-Here the example shows that we have two data sets: y1 and y2. given priors for poisson models. Setting using MCMC to false indicates that we want to derive the posterior distribution, which is Negative Binomial distribution. The first two graphs show the sampling from posterior predictive distribution. Given poisson_fitting_mean, the red line is the density of poisson distribution, and the black line is the emprical distribution of the data, so we can check if they match, then if poisson model with given poisson_fitting_mean is proper. If the confidence interval is given, there will be two variables in the output: theta2_minus_theta1_quantile and y_tidle2_minus_ytilde1_quantile. As the variable names show, they are the interval that theta2-theta1 lies in and interval that y_tilde2-y_tilde1 lies in.
+The black lines in the third and fourth figures are the empirical distribution and the red lines are the distribution of Poisson with mean 1.4. As we can see, the Poisson model with mean 1.4 is not a proper model.
 
-Since we have sample_size theta2_posterior, then for each of them, we can sample 218 data to see if it matches the real data. One way to check is to see the number of 0 and number of 1, and draw the sample_size number of points in one figure then check the number of 0 and number of 1 in the original data.
+For each of the 5000 $\theta_B$ values we sampled, sample $218$ Poisson random variables and count the number of $0$s and the number of $1$s in each of the $5000$ simulated datasets. Now we have two sequences of length $5000$ each, one sequence counting the number of people having zero children for each of the $5000$ posterior predictive datasets, the other counting the number of people with one child. The fifth figure plots the two sequences against one another (one on the x-axis, one on the y-axis). The red point marks how many people in the observed dataset had zero children and one child.
 
-```{r, results="hide"}
-normal_gamma_conjugate_family(sample_size = 10000, mu_0 = 5, sigma_0_sequare = 4, kappa_0 = 1, nu_0 = 2, y.1 = c(2.11,9.75,13.88,11.3,8.93,15.66,16.38,4.54,8.86,11.94,12.47,11.11,11.65,14.53,9.61,7.38,3.34,9.06,9.45,5.98,7.44,8.5,1.55,11.45,9.73), y.2 = c(0.29,1.13,6.52,11.72,6.54,5.63,14.59,11.74,9.12,9.43,10.64,12.28,9.5,0.63,15.35,5.31,8.49,3.04,3.77,6.22,2.14,6.58,1.11), y.3 = c(4.33,7.77,4.15,5.64,7.69,5.04,10.01,13.43,13.63,9.9,5.72,5.16,4.33,12.9,11.27,6.05,0.95,6.02,12.22,12.85), confidence_interval = c(0.025, 0.975))
+The 95% credible interval for $\theta_B-\theta_A$ is
+
+```{r, dependson=-1}
+out$theta2_minus_theta1_quantile
+```
+
+And the 95% credible interval for $\tilde{Y}_B-\tilde{Y}_A$ is
+
+```{r, dependson=-2}
+out$y_tidle2_minus_ytilde1_quantile
+```
 ```
