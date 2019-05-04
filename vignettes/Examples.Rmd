@@ -133,4 +133,12 @@ The posterior probability that $\tilde{Y}_1$ is bigger than both $\tilde{Y}_2$ a
 ```{r, dependson=-8}
 out$y_tilde_biggest.1
 ```
+
+## sensitivity_analysis
+
+Thirty-two students in a science classroom were randomly assigned to one of two study methods, $A$ and $B$, so that $n_A = n_B = 16$ students were assigned to each method. After several weeks of study, students were examined on the course material with an exam designed to give an average score of $75$ with a standard deviation of $10$. The scores for the two groups are summarized by $\{\bar{y}_A = 75.2, s_A = 7.3\}$ and $\{\bar{y}_B = 77.5, s_b = 8.1\}$. Consider independent, conjugate normal prior distributions for each of $\theta_A$ and $\theta_B$, with $\mu_0 = 75$ and $\sigma_0^2 = 100$ for both groups. For each $(\kappa_0, \nu_0) \in \{(1,1),(2,2),(4,4),(8,8),(16,16),(32,32)\}$ (or more values), obtain $Pr(\theta_A < \theta_B\vert y_A, y_B)$ via Monte Carlo sampling. The probability as a function of $(\kappa_0 = \nu_0)$ are plotted using the function and the return is the probability array.
+
+```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4}
+sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 = 7.3, y_bar.2 = 77.5, standard_deviation.2 = 8.1, mu_0 = 75, sigma_0_square = 100, n = 16, kappa_0 = c(1,2,4,8,16,32), nu_0 = c(1,2,4,8,16,32))
+```
 ```
