@@ -151,3 +151,50 @@ We'll assume Poisson sampling models for the two groups and parameterize $\theta
 ```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60), fig.height=4}
 two_prior_sensitivity(sample_size = 5000, gamma_theta_a = 2, gamma_theta_b = 1, y.1 = menchild30bach, y.2 = menchild30nobach, gamma_gamma_a = 2^(seq(3, 7)), gamma_gamma_b = 2^(seq(3, 7)))
 ```
+
+## gibbs_effective
+
+Given data: A study about 25 married couples over a period of five years. One item of interest is the relationship between divorce rates and the various characteristics of the couples. The data divorce consists of two columns, where the first column is age differential, recorded as the man’s age minus the woman’s age. A binary variable Yi is described in terms of an explanatory variable xi via the following latent variable model:
+
+$$
+Z_i=\beta x_i+\epsilon_i\\
+Y_i=\delta_{(c,\infty)}(Z_i)
+$$
+
+where $\beta$ and $c$ are unknown coefficients, $\epsilon_1\ldots,\epsilon_n\sim$ i.i.d. $normal(0, 1)$ and $\delta_{(c,\infty)}(z) = 1$ if $z > c$ and equals zero otherwise. Assuming $\beta\sim normal(0, 16)$, $c \sim normal(0, 16)$.
+
+Implement a Gibbs sampling scheme that approximates the joint posterior distribution of $z$, $\beta$ and $c$. Run the Gibbs sampler long enough so that the effective sample sizes of all unknown parameters are greater than 1,000 (including the $Z_i$'s). 
+
+```{r, results="hide", cache=TRUE, tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+out <- gibbs_effective(sample_size = 30000, x = divorce$V1, y = divorce$V2, tau_beta_square = 16, tau_c_square = 16)
+```
+
+The autocorrelation function of beta is:
+
+```{r, dependson=-1}
+acf(out$beta)
+```
+
+The autocorrelation function of c is:
+
+```{r, dependson=-2}
+acf(out$c)
+```
+
+The autocorrelation function of z is:
+
+```{r, dependson=-3}
+acf(out$z)
+```
+
+A 95% posterior confidence interval for $\beta$ is:
+
+```{r, dependson=-4}
+out$beta_confidence_interval
+```
+
+The probability of $\beta>0$ given the data is:
+
+```{r, dependson=-5}
+out$probability
+```
