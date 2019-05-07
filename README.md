@@ -3,7 +3,7 @@
 ## Installation
 
 ``` r
-devtools::install_github("Kay-Xingchi/BayesPD", force = TRUE, build_vignettes = TRUE)
+devtools::install_github("Kay-Xingchi/BayesPD", build_opts = c("--no-resave-data", "--no-manual"), force = TRUE, build_vignettes = TRUE)
 ```
 
 ## Examples
@@ -52,4 +52,8 @@ sensitivity_analysis(sample_size = 10000, y_bar.1 = 75.2, standard_deviation.1 =
 two_prior_sensitivity(sample_size = 5000, gamma_theta_a = 2, gamma_theta_b = 1, y.1 = menchild30bach, y.2 = menchild30nobach, gamma_gamma_a = 2^(seq(3, 7)), gamma_gamma_b = 2^(seq(3, 7)))
 ```
 
-For better examples with background and explanations, please refer to the vignettes.
+For better examples with background and explanations, please refer to the vignettes by running
+
+``` r
+browseVignettes("BayesPD")
+```
