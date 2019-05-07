@@ -14,6 +14,18 @@
 #' gibbs_effective(sample_size = 30000, x = divorce$V1, y = divorce$V2, 
 #' tau_beta_square = 16, tau_c_square = 16)
 gibbs_effective <- function(sample_size, x, y, tau_beta_square, tau_c_square, confidence_interval = c(0.025, 0.975)) {
+
+	if(sample_size %% 1 != 0 || sample_size <= 0) {
+		stop("Error: sample size should be positive integer!")
+	}
+
+	if(!vector_check(x) || !vector_check(y)) {
+		stop("Error: x and y should be vectors!")
+	}
+	
+	if(!vector_check(confidence_interval, 2) || confidence_interval[1] >= confidence_interval[2] || confidence_interval[1] < 0 || confidence_interval[2] > 1) {
+			stop("Error: Confidence interval is not a valid pair of percentages.")
+	}
 	data_size <- length(y)
 	# The initial values to start Gibbs sampling
 	beta <- stats::rnorm(1, mean = 0, sd = sqrt(tau_beta_square))

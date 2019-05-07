@@ -16,6 +16,18 @@
 #' y.1 = menchild30bach, y.2 = menchild30nobach,
 #' gamma_gamma_a = 2^(seq(3, 7)), gamma_gamma_b = 2^(seq(3, 7)))
 two_prior_sensitivity <- function(sample_size, gamma_theta_a, gamma_theta_b, y.1, y.2, gamma_gamma_a, gamma_gamma_b) {
+
+	if(sample_size %% 1 != 0 || sample_size <= 0) {
+		stop("Error: sample size should be positive integer!")
+	}
+
+	if(length(gamma_theta_b) != length(gamma_theta_a)) {
+		stop("Error: the length of gamma_theta_a should be equal to that of gamma_theta_b!")
+	}
+
+	if(!vector_check(y.1) || !vector_check(y.2)) {
+		stop("Error: y.1 and y.2 should be vectors!")
+	}
 	# Since the two vectors can have different length, we compute each of them.
 	n.1 <- length(y.1)
 	n.2 <- length(y.2)

@@ -1,12 +1,12 @@
 Package: BayesPD
-Title: Bayesian Methods problem driven
+Title: Bayesian Problem Driven
 Version: 1.0.0.0
 Authors@R: 
 	person(given = "Xingchi",
 			family = "Li",
 			role = c("aut", "cre"),
 			email = "xiuciusli@protonmail.ch")
-Description: What the package does (one paragraph).
+Description: Usual methods used in Bayesian Analysis. This package can save a lot of troubles if used properly since it is driven by problems. All the methods can also be used in all kinds of data to do data analysis.
 Imports: 
 	stats,
 	MCMCglmm
