@@ -1,14 +1,10 @@
 ---
 title: "Examples"
-author: "Xingchi Li"
-date: "5/7/2019"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
-  rmarkdown::html_vignette: default
-vignette: |
-  %\VignetteIndexEntry{Examples} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+output: rmarkdown::pdf_document
+vignette: >
+  %\VignetteIndexEntry{Examples} 
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
